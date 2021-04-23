@@ -1,0 +1,52 @@
+<rss version="2.0">
+<link type="text/css" id="dark-mode" rel="stylesheet" href=""/>
+<channel>
+<title>css Zen Garden</title>
+<description>A demonstration of what can be accomplished visually through CSS-based design. This feed announces new entries.</description>
+<link>http://www.csszengarden.com/</link>
+<language>en-ca</language>
+<webMaster>dave@example.com</webMaster>
+<lastBuildDate>Tues, 12 Dec 2013 08:00:00 PST</lastBuildDate>
+<item>
+<title>#221 - 23 Jun 2014</title>
+<description>'Mid Century Modern' by Andrew Lohman</description>
+<link>http://www.csszengarden.com/221/</link>
+</item>
+<item>
+<title>#220 - 12 Dec 2013</title>
+<description>'Garments' by Dan Mall</description>
+<link>http://www.csszengarden.com/220/</link>
+</item>
+<item>
+<title>#219 - 5 Dec 2013</title>
+<description>'Steel' by Steffen Knoeller</description>
+<link>http://www.csszengarden.com/219/</link>
+</item>
+<item>
+<title>#218 - 26 Nov 2013</title>
+<description>'Apothecary' by Trent Walton</description>
+<link>http://www.csszengarden.com/?cssfile=218/218.css</link>
+</item>
+<item>
+<title>#217 - 19 Nov 2013</title>
+<description>'Screen Filler' by Elliot Jay Stocks</description>
+<link>http://www.csszengarden.com/?cssfile=217/217.css</link>
+</item>
+<item>
+<title>#216 - 17 Sept 2013</title>
+<description>'Fountain Kiss' by Jeremy Carlson</description>
+<link>http://www.csszengarden.com/?cssfile=216/216.css</link>
+</item>
+<item>
+<title>#215 - 18 Jul 2013</title>
+<description>'A Robot Named Jimmy' by meltmedia</description>
+<link>http://www.csszengarden.com/?cssfile=215/215.css</link>
+</item>
+<item>
+<title>#214 - 17 Jul 2013</title>
+<description>'Verde Moderna' by Dave Shea</description>
+<link>http://www.csszengarden.com/?cssfile=214/214.css</link>
+</item>
+</channel>
+<style id="dark-mode-custom-color"> :root{ --bg-color:rgba(40,44,52,1); --text-color:rgba(171,178,191,1); --a-color:rgba(90,120,120,1); --a-visited-color:rgba(120,120,90,1); --a-hover-color:rgba(211,211,211,1); --input-border-color:rgba(211,211,211,0.2); --input-placeholder-color:rgba(173,216,230,1); --dialog-bg-color:rgba(36,36,36,0.95); --bg-image:linear-gradient(rgba(40,44,52,1),rgba(40,44,52,1)); } </style>
+</rss>
