@@ -17,28 +17,32 @@
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt fuga maxime vel quam itaque facilis dolor
     molestiae
     tempora culpa, omnis reiciendis ut aliquid eius sunt excepturi quod delectus laudantium. Voluptates.</p>
-  <a href="https://www.jd.com" target="_blank">在新窗口打开京东</a>
-  <a href="mailto:yyts111@gmail.com">点我发邮件</a>
-  <a href="#page-bottom">跳到页面底部</a>
-  <a href="thunder://github.com">点我下载文件</a>
-  <br>
+  <div>
+    <a href="https://www.jd.com" target="_blank">在新窗口打开京东</a>
+    <a href="mailto:yyts111@gmail.com">点我发邮件</a>
+    <a href="#page-bottom">跳到页面底部</a>
+    <a href="vscode_shortcut.pdf" download="vscode_shortcut.pdf">点我下载文件</a>
+  </div>
   <img src="../img.jpg" alt="image" width="200" height="200">
   <hr>
   <hr>
-  <marquee behavior="" direction="left">飘~~~</marquee>
-  <i>这几种强调</i>
-  <strong>有什么</strong>
-  <b>区别呢？</b>
-  <u>这个呢？</u>
-  <em>这个呢？</em>
-  <p>&lt!-- 这段注释需要出现在页面里面 --></p>
-  <p>html的注释怎么写？</p>
-  <p>下面是一段javascript代码，最合适用何种标签表示呢？</p>
-  <pre>
-    function a(){
-      return 8
-    }
-  </pre>
+  <div>
+    <marquee behavior="" direction="left">飘~~~</marquee>
+    <i>这几种强调</i>
+    <strong>有什么</strong>
+    <b>区别呢？</b>
+    <u>这个呢？</u>
+    <em>这个呢？</em>
+    <p>&lt!-- 这段注释需要出现在页面里面 --></p>
+    <p>html的注释怎么写？</p>
+    <!-- 我是一段注释 -->
+    <p>下面是一段javascript代码，最合适用何种标签表示呢？</p>
+    <pre><code>
+      function a(){
+        return 8
+      }
+      </code></pre>
+  </div>
   <hr>
   <ul>
     <li>
@@ -82,46 +86,46 @@
     <dl>
       <dt>性别</dt>
       <dd>
-        <input type="radio" name="gender" value="male">男
-        <input type="radio" name="gender" value="female">女
+        <label><input type="radio" name="gender" value="male">男</label>
+        <label><input type="radio" name="gender" value="female">女</label>
       </dd>
       <dt>年龄</dt>
       <dd>
-        <select name="age" id="age" value="请选择">
-          <option selected hidden disabled value="">请选择</option>
+        <select name="age" value="age">
+          <option selected hidden disabled>请选择</option>
           <optgroup label="少年">
-            <option value="">1到6岁</option>
-            <option value="">6到12岁</option>
+            <option value="1-6">1到6岁</option>
+            <option value="7-12">7到12岁</option>
           </optgroup>
           <optgroup label="青年">
-            <option value="">13到15岁</option>
-            <option value="">16到18岁</option>
+            <option value="13-15">13到15岁</option>
+            <option value="16-18">16到18岁</option>
           </optgroup>
           <optgroup label="壮年">
-            <option value="">19到24岁</option>
-            <option value="">25到30岁</option>
+            <option value="19-24">19到24岁</option>
+            <option value="25-30">25到30岁</option>
           </optgroup>
         </select>
       </dd>
       <dt>生日</dt>
       <dd>
-        <input type="date" name="" id="">
+        <input type="date" name="birthday">
       </dd>
       <dt>生辰</dt>
       <dd>
-        <input type="time" name="" id="">
+        <input type="time" name="birth_time">
       </dd>
       <dt>照片</dt>
       <dd>
-        <label><input type="file" name="photo" id="photo" accept="image/*" hidden>点我上传照片，我比文件上传按钮好看</label>
+        <label><input type="file" name="photo"  accept="image/*" hidden>点我上传照片，我比文件上传按钮好看</label>
       </dd>
       <dt>肤色</dt>
       <dd>
-        <input type="color" name="" id="">
+        <input type="color" name="skin_color">
       </dd>
       <dt>自我介绍</dt>
       <dd>
-        <textarea name="self_description" id="" rows="10" cols="30">&lt;/textarea></textarea>
+        <textarea name="self_description" rows="10" cols="30">&lt;/textarea></textarea>
       </dd>
     </dl>
     <fieldset disabled>
