@@ -63,7 +63,7 @@
     .p3.p4 {
       border-bottom: 1px solid transparent;
     }
-
+    /* inline-block版本 */
     #d1 div {
       display: inline-block;
       margin-right: 30px;
@@ -88,6 +88,44 @@
     #d1 div:hover {
       background-color: red;
     }
+    /* 负margin版本 */
+    #d2{
+      width: 600px;
+      margin-top: 100px;
+      margin:0 auto;
+    }
+    
+    #d2 div {
+      margin-right: 30px;
+      width: 174px;
+      height: 34px;
+      font-size: 16px;
+      line-height: 34px;
+      text-align: center;
+      border: 3px solid black;
+      background-color: #ffc0cb;
+    }
+
+    #d2 div:nth-child(3n+1){
+      margin-top: -5px;
+    }
+
+    #d2 div:nth-child(3n+2){
+      margin-left: 210px;
+      margin-top: -40px;
+      
+    }
+
+     #d2 div:nth-child(3n+3){
+      margin-left:420px;
+      margin-top: -40px;
+      margin-bottom: 20px;
+    }
+
+    #d2 div:hover {
+      background-color: red;
+    }
+    
   </style>
 </head>
 
@@ -99,6 +137,20 @@
     页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
     页面主体 宽度600px</p>
   <div id="d1">
+    <div>宽180高40(包含边框)</div>
+    <div>产品</div>
+    <div>产品</div>
+    <div>水平间隙30px</div>
+    <div>产品</div>
+    <div>产品</div>
+    <div>垂直间隙15px</div>
+    <div>产品</div>
+    <div>产品</div>
+    <div>边框宽度3px</div>
+    <div>产品</div>
+    <div>产品</div>
+  </div>
+  <div id="d2">
     <div>宽180高40(包含边框)</div>
     <div>产品</div>
     <div>产品</div>
