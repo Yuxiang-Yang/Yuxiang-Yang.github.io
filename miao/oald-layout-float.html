@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>oald-layout</title>
+</head>
+
+<style>
+  @font-face {
+    font-family: 'icomoon';
+    src: url('./fonts/icomoon.eot?tomleg');
+    src: url('./fonts/icomoon.eot?tomleg#iefix') format('embedded-opentype'),
+      url('./fonts/icomoon.ttf?tomleg') format('truetype'),
+      url('./fonts/icomoon.woff?tomleg') format('woff'),
+      url('./fonts/icomoon.svg?tomleg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .header {
+    color: #53637d;
+  }
+
+  input {
+    color: gray;
+    font-family: "Averia Serif Libre";
+  }
+
+  .title h1 {
+    font-family: "Averia Serif Libre";
+    color: #53637d;
+    font-size: 26px;
+    font-weight: normal;
+    text-align: right;
+    padding-right: 8px;
+  }
+
+  .navLeft {
+    box-sizing: border-box;
+    /* overflow: auto; */
+    float: left;
+    width: 192px;
+    height: 100vh;
+    background-color: #eaeef3;
+    box-shadow: -3px 0px 8px rgb(0, 0, 0, 0.3) inset;
+  }
+
+  .navLeft input {
+    border: 1px solid #c0c0c0;
+    height: 25px;
+    width: 150px;
+    margin-right: 0;
+    margin-left: 5px;
+    border-radius: 13px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .navLeft button {
+    font-family: 'icomoon';
+    box-sizing: border-box;
+    color: #fff;
+    border: 1px solid #2f5bb7;
+    height: 25px;
+    width: 30px;
+    vertical-align: top;
+    margin-left: 0;
+    background-color: #4b8df9;
+    border-radius: 13px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .list {
+    height: calc(100vh - 100px);
+    font-size: 14px;
+    color: #3b5999;
+    overflow: auto;
+    margin-top: 5px;
+    border-bottom: 1px solid #e2e2e2;
+  }
+
+  .navLeft ul {
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+    overflow: auto;
+  }
+
+  .navLeft ul li {
+    font-family: "Averia Serif Libre";
+    box-sizing: border-box;
+    line-height: 20px;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .navLeft ul li a {
+    box-sizing: border-box;
+    height: 28px;
+    padding-left: 10px;
+    display: block;
+    line-height: 28px;
+    border: 1px solid transparent;
+  }
+
+  .navLeft ul li a:hover {
+    background-color: #bbcee9;
+    border: 1px solid #8faad9;
+  }
+
+  .navLeft ul li:first-child {
+    background-color: #bbcee9;
+    border: 1px solid #8faad9;
+  }
+
+  .mainContent {
+    overflow: auto;
+    box-sizing: border-box;
+    float: left;
+    height: 100vh;
+    width: calc(100vw - 576px);
+    line-height: 1.5;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+  }
+
+  .mainContent ol {
+    font-family: "Averia Serif Libre";
+    font-size: 16px;
+    color: #000;
+  }
+
+  .mainContent .header {
+    height: 72px;
+    box-shadow: 0 3px 8px rgb(0, 0, 0, 0.3);
+  }
+
+  .mainContent .header span {
+    display: block;
+    font-family: "Averia Serif Libre";
+    line-height: 72px;
+    text-align: left;
+    margin-left: 60px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .vocabulary {
+    position: absolute;
+    top: 0;
+    right: 192px;
+    height: 100vh;
+    width: 192px;
+    float: left;
+    overflow: hidden;
+    background-color: #eaeef3;
+    box-shadow: -3px 0px 8px rgb(0, 0, 0, 0.3) inset;
+  }
+
+  .history {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 192px;
+    overflow: hidden;
+    background-color: #eaeef3;
+    box-shadow: -3px 0px 8px rgb(0, 0, 0, 0.3) inset;
+  }
+
+  .vocabulary .header {
+    display: block;
+    font-family: "Averia Serif Libre";
+    font-size: 26px;
+    line-height: 72px;
+    text-align: right;
+    padding-right: 15px;
+  }
+
+  .vocabulary input {
+    border: 1px solid #c0c0c0;
+    height: 25px;
+    width: 180px;
+    margin-right: 0;
+    margin-left: 5px;
+    border-radius: 13px;
+  }
+
+  .history .header {
+    font-size: 26px;
+    display: block;
+    font-family: "Averia Serif Libre";
+    line-height: 72px;
+    text-align: right;
+    padding-right: 15px;
+  }
+
+  .history input {
+    border: 1px solid #c0c0c0;
+    height: 25px;
+    width: 180px;
+    margin-right: 0;
+    margin-left: 5px;
+    border-radius: 13px;
+  }
+
+  .vocabulary>span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    text-indent: 3px;
+    cursor: pointer;
+    line-height: 40px;
+    color: white;
+    overflow: hidden;
+    background-color: #2F5BB7;
+    transform: rotate(-45deg) translatex(28px);
+  }
+
+  .vocabulary>span:hover {
+    background-color: #ffd700;
+  }
+
+  .history>span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    text-indent: 3px;
+    cursor: pointer;
+    line-height: 40px;
+    color: white;
+    overflow: hidden;
+    background-color: #2F5BB7;
+    transform: rotate(-45deg) translatex(28px);
+  }
+
+  .history>span:hover {
+    background-color: #ffd700;
+  }
+
+  ::-webkit-scrollbar,
+  ::-webkit-scrollbar-thumb {
+    overflow: visible;
+    border-radius: 4px;
+    border: solid 1px #a6a6a6;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(202, 202, 202, 0.07)), color-stop(100%, rgba(229, 229, 229, 0.07)));
+    background: -webkit-linear-gradient(left, rgba(202, 202, 202, 0.07) 0%, rgba(229, 229, 229, 0.07) 100%);
+    -webkit-box-shadow: 0 0 1px 0 rgba(0, 0, 0, .15) inset, 0 1px 0 0 #fff;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, .15) inset, 0 1px 0 0 #fff;
+    background-color: #e5e5e5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(233, 233, 233, 0.05)), color-stop(100%, rgba(221, 221, 221, 0.05)));
+    background: -webkit-linear-gradient(left, rgba(233, 233, 233, 0.05) 0%, rgba(221, 221, 221, 0.05) 100%);
+    -webkit-box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .05);
+    background-color: #e9e9e9;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0.05)), color-stop(100%, rgba(0, 0, 0, 0.05)));
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
+    -webkit-box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .05);
+    background-color: #f5f5f5;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0.03)), color-stop(100%, rgba(0, 0, 0, 0.03)));
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.03) 100%);
+    -webkit-box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .05);
+    background-color: #f5f5f5;
+  }
+
+  ::-webkit-scrollbar-button {
+    height: 0;
+    display: block;
+    background-color: transparent;
+  }
+</style>
+
+<body>
+  <main>
+    <div class='navLeft'>
+      <div class="search">
+        <div class="title">
+          <h1>OALD Se7en</h1>
+        </div>
+        <input type="search"><button></button>
+      </div>
+      <div class="list">
+        <ul>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class='mainContent'>
+      <div class="header">
+        <span>HTML</span>
+      </div>
+      <div class="content">
+        <ol>
+          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dicta quia consequuntur sapiente modi
+            quas omnis optio</li>
+          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dicta quia consequuntur sapiente modi
+            quas omnis optio</li>
+          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dicta quia consequuntur sapiente modi
+            quas omnis optio</li>
+          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dicta quia consequuntur sapiente modi
+            quas omnis optio</li>
+          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dicta quia consequuntur sapiente modi
+            quas omnis optio</li>
+
+        </ol>
+      </div>
+    </div>
+    <div class="vocabulary">
+      <span>+</span>
+      <div class="header">
+        <span>Vocabulary</span>
+      </div>
+      <input type="search" value="Search Vocabulary">
+    </div>
+    <div class="content"></div>
+    <div class="history">
+      <span>+</span>
+      <div class="header">
+        <span>History</span>
+      </div>
+      <input type="search" value="Search History">
+      <div class="content"></div>
+    </div>
+
+  </main>
+</body>
+
+</html>
