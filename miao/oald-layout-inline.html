@@ -21,6 +21,10 @@
     font-display: block;
   }
 
+  .navLeft {
+    vertical-align: top;
+  }
+
   html,
   body {
     padding: 0;
@@ -31,6 +35,10 @@
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  main {
+    font-size: 0;
   }
 
   .header {
@@ -52,9 +60,9 @@
   }
 
   .navLeft {
+    display: inline-block;
     box-sizing: border-box;
     /* overflow: auto; */
-    float: left;
     width: 192px;
     height: 100vh;
     background-color: #eaeef3;
@@ -131,9 +139,9 @@
   }
 
   .mainContent {
+    display: inline-block;
     overflow: auto;
     box-sizing: border-box;
-    float: left;
     height: 100vh;
     width: calc(100vw - 576px);
     line-height: 1.5;
@@ -166,21 +174,16 @@
   }
 
   .vocabulary {
-    position: absolute;
-    top: 0;
-    right: 192px;
+    display: inline-block;
     height: 100vh;
     width: 192px;
-    float: left;
     overflow: hidden;
     background-color: #eaeef3;
     box-shadow: -3px 0px 8px rgb(0, 0, 0, 0.3) inset;
   }
 
   .history {
-    position: absolute;
-    top: 0;
-    right: 0;
+    display: inline-block;
     height: 100vh;
     width: 192px;
     overflow: hidden;
@@ -189,12 +192,17 @@
   }
 
   .vocabulary .header {
-    display: block;
+    display: inline-block;
     font-family: "Averia Serif Libre";
     font-size: 26px;
+    width: 192px;
     line-height: 72px;
     text-align: right;
     padding-right: 15px;
+  }
+
+  .vocabulary .header span {
+    padding-right: 5px;
   }
 
   .vocabulary input {
@@ -215,6 +223,10 @@
     padding-right: 15px;
   }
 
+  .history .header span {
+    padding-right: 5px;
+  }
+
   .history input {
     border: 1px solid #c0c0c0;
     height: 25px;
@@ -222,44 +234,6 @@
     margin-right: 0;
     margin-left: 5px;
     border-radius: 13px;
-  }
-
-  .vocabulary>span {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    text-indent: 3px;
-    cursor: pointer;
-    line-height: 40px;
-    color: white;
-    overflow: hidden;
-    background-color: #2F5BB7;
-    transform: rotate(-45deg) translatex(28px);
-  }
-
-  .vocabulary>span:hover {
-    background-color: #ffd700;
-  }
-
-  .history>span {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    text-indent: 3px;
-    cursor: pointer;
-    line-height: 40px;
-    color: white;
-    overflow: hidden;
-    background-color: #2F5BB7;
-    transform: rotate(-45deg) translatex(28px);
-  }
-
-  .history>span:hover {
-    background-color: #ffd700;
   }
 
   ::-webkit-scrollbar,
@@ -375,7 +349,6 @@
             quas omnis optio</li>
           <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dicta quia consequuntur sapiente modi
             quas omnis optio</li>
-
         </ol>
       </div>
     </div>
