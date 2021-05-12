@@ -19,12 +19,21 @@
     background-repeat: no-repeat;
     animation: run 0.6s steps(6) infinite;
   }
+
+  div.animation:hover{
+    animation: run 0.0001s steps(6) infinite;
+  }
   @keyframes run{
     0%{
       background-position: 35px -302px;
+      background-color: #eee;
+    }
+    50%{
+      background-color: #777;
     }
     100%{
       background-position: -832px -302px;
+      background-color: #eee;
     }
   }
   div.sprite{
