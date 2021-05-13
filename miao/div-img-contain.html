@@ -38,9 +38,12 @@
       width: 225px;
       height: 300px;
     }
-
+    .img_8{
+      width: 400px;
+      height: 225px;
+    }
     .img_5,
-    .img_6 {
+    .img_6{
       color: transparent;
       text-align: center;
       font-size: 220px;
@@ -53,7 +56,15 @@
       background-size: contain;
       background-repeat: no-repeat;
     }
-
+    .img_9{
+      width: 400px;
+      height: 225px;
+      margin: auto;
+      background-image: url(zeeker001_1_s.jpg);
+      background-position: center;
+      background-size: none;
+      background-repeat: no-repeat;
+    }
     .img_5 {
       width: 400px;
       height: 225px;
@@ -66,9 +77,14 @@
       width: 225px;
       height: 300px;
     }
-
+    .img_7{
+      position: relative;
+      width: 400px;
+      height: 225px;
+    }
     .img_1 img,
-    .img_2 img {
+    .img_2 img,
+    .img_7 img {
       position: absolute;
       max-height: 100%;
       max-width: 100%;
@@ -79,17 +95,14 @@
       margin: auto;
     }
 
-    .img_3 img {
+    .img_3 img, 
+    .img_4 img,
+    .img_8 img{
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: scale-down;
     }
-
-    .img_4 img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+    
   </style>
 </head>
 
@@ -101,6 +114,9 @@
   <div class="img img_2">
     <img src="zeeker001_1.jpg" alt="zeeker001">
   </div>
+  <div class="img img_7">
+    <img src="zeeker001_1_s.jpg" alt="zeeker001">
+  </div>
   <h2>利用object-fit实现图片自适应居中</h2>
   <div class="img img_3">
     <img src="zeeker001_1.jpg" alt="zeeker001">
@@ -108,10 +124,13 @@
   <div class="img img_4">
     <img src="zeeker001_1.jpg" alt="zeeker001">
   </div>
+  <div class="img img_8">
+    <img src="zeeker001_1_s.jpg" alt="zeeker001">
+  </div>
   <h2>利用background-size:contain实现图片自适应居中</h2>
   <div class="img img_5">极</div>
-  <div class="img img_6">
-  </div>
+  <div class="img img_6"></div>
+  <div class="img img_9"></div>
 </body>
 
 </html>
