@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>twitter-heart</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      margin-top: -8px;
+      background: url(web_heart_animation.png) no-repeat;
+    }
+
+    fieldset {
+      width: 100px;
+      height: 108px;
+      margin: 80px;
+      margin-bottom: 80px;
+    }
+
+    @keyframes twitter {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: -2800px 0;
+      }
+    }
+
+    div.animation:hover {
+      cursor: pointer;
+      animation: twitter 0.8s steps(28, start);
+      animation-fill-mode: forwards;
+    }
+
+    div.transition {
+      background-position: 0 0;
+    }
+
+    div.transition:hover {
+      cursor: pointer;
+      background-position: -2800px 0;
+      transition: 0.8s steps(28);
+    }
+  </style>
+</head>
+
+<body>
+  <fieldset>
+    <legend>transition</legend>
+    <div class="transition"></div>
+  </fieldset>
+  <fieldset>
+    <legend>animation</legend>
+    <div class="animation"></div>
+  </fieldset>
+
+</body>
+
+</html>
