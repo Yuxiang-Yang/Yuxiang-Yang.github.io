@@ -25,6 +25,9 @@
     margin: 0;
   }
 
+  body{
+    background-color: #21252b;
+  }
   ul {
     font-size: 12px;
     margin: 0;
@@ -34,8 +37,25 @@
     list-style: none;
     text-align: center;
   }
+  
+  .logo{
+    display: block;
+    float: left;
+    width: 15px;
+    height: 15px;
+    margin-top: 7px;
+    margin-left:5px ;
+    background: url(VSCode.png) no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
 
   .firstMenu>li {
+    color: #99a1b1;
+    position: relative;
+    float: left;
+    width: 60px;
+    background-color: #282c34;
     text-align: center;
   }
 
@@ -51,15 +71,6 @@
     padding: 0 5px;
     display: flow-root;
     background-color: #282c34;
-
-  }
-
-  .firstMenu>li {
-    color: #99a1b1;
-    position: relative;
-    float: left;
-    width: 60px;
-    background-color: #282c34;
   }
 
   .firstMenu {
@@ -68,6 +79,7 @@
     float: left;
     width: 60px;
     background-color: #282c34;
+    transition: 1s;
   }
 
   .firstMenu:hover {
@@ -81,17 +93,49 @@
   .secondMenu {
     display: none;
     position: absolute;
-    width: 120px;
-    height: 120px;
     font-size: 12px;
     line-height: 30px;
     background-color: #282c34;
+  }
+
+  .secondMenu li{
+    width: 130px;
     padding-left: 20px;
+    background-color: #282c34;
+  }
+
+  .secondMenu li:hover{
+    cursor: pointer;
+    background-color: #3e4249;
+  }
+
+  .thirdMenu {
+    display: none;
+    position: absolute;
+    top: 150px;
+    left:170px;
+    font-size: 12px;
+    line-height: 30px;
+    background-color: #282c34;
+  }
+
+  .secondMenu li{
+    width: 150px;
+    padding-left: 20px;
+    background-color: #282c34;
+  }
+  .secondMenu>li:nth-child(6):hover .thirdMenu {
+    display: block;
+  }
+
+  .secondMenu li:last-child{
+
   }
 </style>
 
 <body>
   <div class="menu">
+    <span class="logo"></span>
     <ul class="firstMenu">
       <li>File</li>
       <li>
@@ -101,7 +145,13 @@
           <li>Open File</li>
           <li>Open Folder</li>
           <li>Open Workspace</li>
-          <li>Open Recent</li>
+          <li>Open Recent
+            <ul class="thirdMenu">
+              <li>Reopen Closed Editor</li>
+              <li>More</li>
+              <li>Clear Recently Opened</li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
