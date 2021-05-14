@@ -20,16 +20,14 @@
     animation: run 0.6s steps(6) infinite,
     moveX 7s linear infinite,
     moveY 11s linear infinite,
-    rotate 2s linear infinite,
-    rotate3D 2s linear infinite;
+    rotateY 2s linear infinite;
   }
 
   div.animation:hover{
     animation: run 0.6s steps(6) infinite,
     moveX 7s linear infinite,
     moveY 11s linear infinite,
-     rotate 2s linear infinite,
-    rotate 2s linear infinite;
+    rotateY 2s linear infinite;
   }
 
   @keyframes run{
@@ -77,7 +75,7 @@
       transform:rotate(360deg);
     }
   }
-  @keyframes rotate3D{
+  @keyframes rotateY{
     0%{
       transform:rotate3d(0, 1, 0, 0deg);
     }
@@ -85,6 +83,7 @@
       transform:rotate3d(0, 1, 0, 360deg);
     }
   }
+
   div.sprite{
     height: 110px;
     width: 110px;
