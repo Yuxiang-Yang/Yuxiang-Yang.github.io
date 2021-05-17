@@ -1,0 +1,81 @@
+:root{
+  --bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin:0;
+  padding:0;
+  font-family: var(--bs-font-sans-serif);
+  font-size: 1rem;;
+  line-height: 1.5;
+}
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  font-size: 16px;
+  text-align-last: left;
+}
+.table td{
+  padding: 8px;
+}
+.table thead tr{
+  border-bottom: 1px solid black;
+}
+.table th{
+  padding: 8px;
+}
+.table tbody  tr{
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td{
+  border: 1px solid #dee2e6;
+}
+
+.table-dark{
+  color: white;
+  background-color: #212529;
+}
+
+.table-dark thead tr{
+  border-bottom: 1px solid white;
+}
+
+.table-dark tbody tr{
+  border-bottom: 1px solid #373b3e;
+}
+.table-dark.table-bordered tr,
+.table-dark.table-bordered td,
+.table-dark.table-bordered th{
+  border: 1px solid #373b3e;
+}
+table.table-hover tbody tr:hover{
+  background-color: #ececec;
+}
+
+table.table-dark.table-hover tbody tr:hover{
+background-color: #323539;
+}
+
+.table-borderless table,
+.table-borderless th,
+.table-borderless td,
+.table-borderless thead tr,
+.table-borderless tbody tr{
+  border: none;
+}
+
+.table-striped tbody tr:nth-child(odd){
+  background-color: #f2f2f2;
+}
+
+.table-striped.table-dark tbody tr:nth-child(odd){
+  background-color: #2c3034;
+}
+
