@@ -26,7 +26,7 @@
   }
 
   body{
-    background-color: #21252b;
+    background-color: #000;
   }
   ul {
     font-size: 12px;
@@ -39,12 +39,11 @@
   }
   
   .logo{
-    display: block;
-    float: left;
-    width: 15px;
-    height: 15px;
-    margin-top: 7px;
-    margin-left:5px ;
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin: auto 10px;
+    vertical-align: middle;
     background: url(VSCode.png) no-repeat;
     background-position: center;
     background-size: contain;
@@ -52,15 +51,17 @@
 
   .firstMenu>li {
     color: #99a1b1;
-    position: relative;
-    float: left;
-    width: 60px;
+    padding:0 8px;
     background-color: #282c34;
     text-align: center;
   }
 
   .firstMenu>li:hover {
     background-color: #3e4249;
+  }
+
+  .firstMenu>li:hover .secondMenu {
+    display: block;
   }
 
   ul li {
@@ -74,34 +75,29 @@
   }
 
   .firstMenu {
+   display: inline-block;
     color: #99a1b1;
     position: relative;
-    float: left;
-    width: 60px;
     background-color: #282c34;
     transition: 1s;
-  }
-
-  .firstMenu:hover {
-    background-color: #3e4249;
-  }
-
-  .firstMenu:hover .secondMenu {
-    display: block;
   }
 
   .secondMenu {
     display: none;
     position: absolute;
+    top:100%;
+    left: 0;
     font-size: 12px;
     line-height: 30px;
     background-color: #282c34;
   }
 
   .secondMenu li{
-    width: 130px;
-    padding-left: 20px;
-    background-color: #282c34;
+    position: relative;
+    min-width: 180px;
+    padding:0 30px;
+    white-space: nowrap;
+    background-color: #21252b;
   }
 
   .secondMenu li:hover{
@@ -112,18 +108,13 @@
   .thirdMenu {
     display: none;
     position: absolute;
-    top: 150px;
-    left:170px;
+    top: 0;
+    left:100%;
     font-size: 12px;
     line-height: 30px;
     background-color: #282c34;
   }
 
-  .secondMenu li{
-    width: 150px;
-    padding-left: 20px;
-    background-color: #282c34;
-  }
   .secondMenu>li:nth-child(6):hover .thirdMenu {
     display: block;
   }
@@ -137,8 +128,7 @@
   <div class="menu">
     <span class="logo"></span>
     <ul class="firstMenu">
-      <li>File</li>
-      <li>
+      <li>File
         <ul class="secondMenu">
           <li>New File</li>
           <li>New Window</li>
@@ -156,8 +146,7 @@
       </li>
     </ul>
     <ul class="firstMenu">
-      <li>Edit</li>
-      <li>
+      <li>Edit
         <ul class="secondMenu">
           <li>Undo</li>
           <li>Redo</li>
@@ -167,8 +156,7 @@
       </li>
     </ul>
     <ul class="firstMenu">
-      <li>Selection</li>
-      <li>
+      <li>Selection
         <ul class="secondMenu">
           <li>Select All</li>
           <li>Expend Selection</li>
@@ -178,8 +166,7 @@
       </li>
     </ul>
     <ul class="firstMenu">
-      <li>View</li>
-      <li>
+      <li>View
         <ul class="secondMenu">
           <li>Command Palette</li>
           <li>Open View</li>
@@ -187,8 +174,78 @@
           <li>Editor Layout</li>
         </ul>
       </li>
-
-
+    </ul>
+    <ul class="firstMenu">
+      <li>Go
+        <ul class="secondMenu">
+          <li>New File</li>
+          <li>New Window</li>
+          <li>Open File</li>
+          <li>Open Folder</li>
+          <li>Open Workspace</li>
+          <li>Open Recent
+            <ul class="thirdMenu">
+              <li>Reopen Closed Editor</li>
+              <li>More</li>
+              <li>Clear Recently Opened</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="firstMenu">
+      <li>Run
+        <ul class="secondMenu">
+          <li>New File</li>
+          <li>New Window</li>
+          <li>Open File</li>
+          <li>Open Folder</li>
+          <li>Open Workspace</li>
+          <li>Open Recent
+            <ul class="thirdMenu">
+              <li>Reopen Closed Editor</li>
+              <li>More</li>
+              <li>Clear Recently Opened</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="firstMenu">
+      <li>Terminal
+        <ul class="secondMenu">
+          <li>New File</li>
+          <li>New Window</li>
+          <li>Open File</li>
+          <li>Open Folder</li>
+          <li>Open Workspace</li>
+          <li>Open Recent
+            <ul class="thirdMenu">
+              <li>Reopen Closed Editor</li>
+              <li>More</li>
+              <li>Clear Recently Opened</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="firstMenu">
+      <li>Help
+        <ul class="secondMenu">
+          <li>New File</li>
+          <li>New Window</li>
+          <li>Open File</li>
+          <li>Open Folder</li>
+          <li>Open Workspace</li>
+          <li>Open Recent
+            <ul class="thirdMenu">
+              <li>Reopen Closed Editor</li>
+              <li>More</li>
+              <li>Clear Recently Opened</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 
