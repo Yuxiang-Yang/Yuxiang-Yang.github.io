@@ -11,6 +11,7 @@
       color: #abb2bf;
       background-color: #282c34;
     }
+  
     .caption {
       display: block;
       font-size: 18px;
@@ -71,6 +72,7 @@
 
     table {
       margin: 0 auto;
+      margin-bottom: 30px;
     }
 
     td.useTable {
@@ -87,6 +89,42 @@
       width: 100px;
       height: 100px;
       vertical-align: middle;
+      border: 3px solid ;
+    }
+
+    div.useFlex{
+      display: flex;
+      width: 240px;
+      height: 240px;
+      margin: 0 auto;
+      margin-bottom: 30px;
+      align-items: center;
+      justify-content: center; 
+      border: 3px solid ;
+    }
+
+    div.useFlex span{
+      width: 100px;
+      height: 100px;
+      border: 3px solid ;
+    }
+
+    div.usePosition{
+      position: relative;
+      width: 240px;
+      height: 240px;
+      margin: 0 auto;
+      align-items: center;
+      justify-content: center; 
+      border: 3px solid ;
+    }
+
+    div.usePosition span{
+      position: absolute;
+      top:67px;
+      left:67px;
+      width: 100px;
+      height: 100px;
       border: 3px solid ;
     }
   </style>
@@ -111,6 +149,14 @@
       <span></span>
     </td>
   </table>
+  <span class="caption">使用flex</span>
+  <div class="useFlex">
+    <span></span>
+  </div>
+  <span class="caption">使用position</span>
+  <div class="usePosition">
+    <span></span>
+  </div>
 
 </body>
 
