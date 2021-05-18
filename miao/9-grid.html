@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-grid</title>
+  <style>
+    caption {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .caption {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+      margin-bottom: 30px;
+    }
+
+    td {
+      width: 70px;
+      height: 70px;
+      text-align: center;
+    }
+
+    col,
+    tr {
+      border: 6px solid blue;
+    }
+
+    td:hover {
+      border: 6px solid red;
+    }
+
+    div.borderOnBg {
+      display: flow-root;
+      width: 243px;
+      height: 243px;
+      margin: 0 auto;
+      margin-bottom: 30px;
+      background-color: blue;
+    }
+
+    div.borderOnBg span {
+      display: block;
+      float: left;
+      width: 73px;
+      height: 73px;
+      line-height: 73px;
+      text-align: center;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 6px solid transparent;
+      margin-right: -6px;
+      margin-bottom: -6px;
+    }
+
+    div.borderOnBg span:nth-child(n+7) {
+      margin-bottom: 0;
+    }
+
+    div.borderOnBg span:hover {
+      border: 6px solid red;
+    }
+
+    div.z-index {
+      width: 243px;
+      height: 243px;
+      margin: 0 auto;
+      margin-bottom: 30px;
+    }
+
+    div.z-index span {
+      display: block;
+      position: relative;
+      float: left;
+      width: 73px;
+      height: 73px;
+      line-height: 73px;
+      text-align: center;
+      border: 6px solid blue;
+      margin-right: -6px;
+      margin-bottom: -6px;
+    }
+
+    div.z-index span:hover {
+      z-index: 1;
+      border: 6px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <caption>使用table</caption>
+    <tbody>
+      <col>
+      <col>
+      <col>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="caption">使用边框覆盖背景颜色</span>
+  <div class="borderOnBg">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span>7</span>
+    <span>8</span>
+    <span>9</span>
+  </div>
+  <span class="caption">使用z-index</span>
+  <div class="z-index">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span>7</span>
+    <span>8</span>
+    <span>9</span>
+  </div>
+</body>
+
+</html>
