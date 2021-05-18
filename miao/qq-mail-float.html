@@ -34,14 +34,8 @@
     background: url(logo.gif);
   }
 
-  .wrap {
-    height: calc(100vh - 75px);
-    border: 1px solid #e2e2e2;
-  }
-
   .navLeft {
     box-sizing: border-box;
-    overflow: auto;
     float: left;
     width: 192px;
     background-color: #f5f5f5;
@@ -81,10 +75,8 @@
   }
 
   .mainContent {
-    overflow: auto;
     box-sizing: border-box;
-    float: left;
-    width: calc(100% - 194px);
+    display: flow-root;
     height: calc(100vh - 69px);
     line-height: 1.5;
     font-size: 18px;
@@ -103,31 +95,25 @@
     <a href="https://mail.qq.com"></a>
   </header>
   <main>
-    <div class='wrap'>
-      <div class='navLeft'>
-        <div class="mainFunc">
-          <ul>
-            <li><a href="#">写信</a></li>
-            <li><a href="#">收信</a></li>
-            <li><a href="#">通讯录</a></li>
-          </ul>
-        </div>
-
-      </div>
-      <div class='mainContent'>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dicta quia consequuntur sapiente modi
-          quas omnis optio, doloribus doloremque tempore id eum exercitationem ipsam perferendis reprehenderit?
-          Assumenda voluptates, ut laboriosam modi velit quasi ea sit eos porro aspernatur, quaerat repellat rerum rem
-          sed sunt, cumque optio officiis consequuntur. Odit sit nisi est, hic inventore iste, repudiandae ipsa impedit,
-          soluta sed sequi dolor nihil velit veniam ex non esse? Quam, atque. Eaque fugit perspiciatis vel corporis
-          quaerat incidunt tempora esse qui aut quod autem, at nisi deleniti blanditiis dolorum. Corporis ipsa velit
-          expedita quaerat recusandae consequatur molestias voluptate ea odit excepturi vel hic, quis voluptatem, iusto,
-          omnis itaque qui asperiores. Saepe earum itaque neque cupiditate
-        </p>
+    <div class='navLeft'>
+      <div class="mainFunc">
+        <ul>
+          <li><a href="#">写信</a></li>
+          <li><a href="#">收信</a></li>
+          <li><a href="#">通讯录</a></li>
+        </ul>
       </div>
     </div>
-
-
+    <div class='mainContent'>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dicta quia consequuntur sapiente modi
+        quas omnis optio, doloribus doloremque tempore id eum exercitationem ipsam perferendis reprehenderit?
+        Assumenda voluptates, ut laboriosam modi velit quasi ea sit eos porro aspernatur, quaerat repellat rerum rem
+        sed sunt, cumque optio officiis consequuntur. Odit sit nisi est, hic inventore iste, repudiandae ipsa impedit,
+        soluta sed sequi dolor nihil velit veniam ex non esse? Quam, atque. Eaque fugit perspiciatis vel corporis
+        quaerat incidunt tempora esse qui aut quod autem, at nisi deleniti blanditiis dolorum. Corporis ipsa velit
+        expedita quaerat recusandae consequatur molestias voluptate ea odit excepturi vel hic, quis voluptatem, iusto,
+    omnis itaque qui asperiores. Saepe earum itaque neque cupiditate</p>
+    </div>
   </main>
 </body>
 
