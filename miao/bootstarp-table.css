@@ -75,7 +75,7 @@ background-color:var(--bs-table-hover-bg);
 
 table.table-borderless thead,
 table.table-borderless tr{
-  border: hidden;
+  border: none;
 }
 
 .table-striped tbody tr:nth-child(odd){
