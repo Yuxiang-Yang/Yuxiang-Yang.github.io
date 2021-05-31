@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css-clock</title>
+  <link rel="stylesheet" href="css-clock.css">
+</head>
+
+<body>
+  <main>
+    <section class="scale">
+      <div><span>12</span></div>
+      <div><span>1</span></div>
+      <div><span>2</span></div>
+      <div><span>3</span></div>
+      <div><span>4</span></div>
+      <div><span>5</span></div>
+      <div><span>6</span></div>
+      <div><span>7</span></div>
+      <div><span>8</span></div>
+      <div><span>9</span></div>
+      <div><span>10</span></div>
+      <div><span>11</span></div>
+    </section>
+    <section class="sec-hand">
+      <div>
+        <span></span>
+      </div>
+    </section>
+    <section class="min-hand">
+      <div></div>
+    </section>
+    <section class="hour-hand">
+      <div></div>
+    </section>
+    <section class="circle">
+      <div></div>
+    </section>
+  </main>
+  <script>
+    let date = new Date();
+    let time = -(date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds());
+    let hourHand = document.querySelector(".hour-hand div");
+    let minHand = document.querySelector(".min-hand div");
+    let secHand = document.querySelector(".sec-hand div");
+    let shadow = document.querySelector(".sec-hand div span");
+    hourHand.style.animation = "hour-hand 43200s " + time + "s steps(60) infinite";
+    minHand.style.animation = "min-hand 3600s " + time + "s steps(60) infinite";
+    secHand.style.animation = "sec-hand 60s " + time + "s linear infinite";
+    shadow.style.animation = "shadow 60s " + time + "s linear infinite"
+  </script>
+</body>
+
+</html>
