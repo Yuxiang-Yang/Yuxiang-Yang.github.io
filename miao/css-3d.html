@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css-3d</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      min-width: 200px;
+      min-height: 200px;
+      margin: 0;
+      perspective: 1000px;
+      background-color: #ccc;
+    }
+
+    main {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    section {
+      width: 100px;
+      height: 100px;
+      transform: rotatey(0) rotatex(0);
+      transform-style: preserve-3d;
+      animation: move 40s linear infinite;
+    }
+
+    @keyframes move {
+      from {
+        transform: rotatey(0) rotatex(0);
+      }
+
+      to {
+        transform: rotatey(10turn) rotatex(10turn);
+      }
+    }
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5em;
+      color: #fff;
+      box-sizing: border-box;
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: rgba(0, 0, 0);
+      border: 2px solid white;
+    }
+
+    div:nth-child(1) {
+      transform: translatez(50px);
+    }
+
+    div:nth-child(2) {
+      transform: translatez(-50px) rotatey(180deg);
+    }
+
+    div:nth-child(3) {
+      transform: translatex(50px) rotatey(90deg);
+    }
+
+    div:nth-child(4) {
+      transform: translatex(-50px) rotatey(-90deg);
+    }
+
+    div:nth-child(5) {
+      transform: translatey(50px) rotatex(-90deg);
+    }
+
+    div:nth-child(6) {
+      transform: translatey(-50px) rotatex(90deg);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </section>
+  </main>
+</body>
+
+</html>
