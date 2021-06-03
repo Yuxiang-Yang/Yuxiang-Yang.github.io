@@ -1,0 +1,298 @@
+html {
+  font-size: calc((100vw / 720) * 100);
+}
+
+body {
+  margin: 0;
+}
+
+img {
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+}
+
+header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.header-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: .84rem;
+  color: #666;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+.header-wrapper .header-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header-wrapper .header-left .header-logo {
+  width: .6rem;
+  margin: 0 .2rem;
+}
+
+.header-wrapper .header-left .header-logo img {
+  display: block;
+  width: 80%;
+}
+
+.header-wrapper .header-middle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: .3rem;
+}
+
+.header-wrapper .header-middle .header-search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  line-height: 1.15;
+  color: rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: .04rem;
+}
+
+.header-wrapper .header-middle .header-search i {
+  display: block;
+  width: .6rem;
+  height: .6rem;
+  background-image: url(../images/icon-search.png);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: .4rem .4rem;
+}
+
+.header-wrapper .header-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header-wrapper .header-right .header-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: .6rem;
+  margin: 0 .2rem;
+}
+
+.header-wrapper .header-right .header-user img {
+  display: block;
+  width: .4rem;
+  height: .4rem;
+}
+
+.nav-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.26em;
+  color: #747474;
+  background-color: #f2f2f2;
+}
+
+.nav-wrap .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.nav-wrap .nav .nav-item {
+  display: inline-block;
+}
+
+.nav-wrap .nav .nav-item span {
+  display: inline-block;
+  line-height: .55rem;
+  border-bottom: 2px solid rgba(237, 91, 0, 0);
+}
+
+.nav-wrap .nav .nav-item:first-of-type span {
+  color: #ed5b00;
+  border-color: #ed5b00;
+}
+
+.nav-wrap .nav .nav-item:last-of-type span {
+  width: 0.4rem;
+  height: 0.4rem;
+  background: url(../images/icon-down.png);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: .4rem .4rem;
+}
+
+main {
+  margin-top: 1.41rem;
+}
+
+main .page-wrap {
+  width: 100%;
+}
+
+main .page-wrap .slider {
+  height: 3.6rem;
+}
+
+main .page-wrap .slider img {
+  width: 100%;
+}
+
+main .page-wrap .multi-cell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+main .page-wrap .multi-cell img {
+  display: inline-block;
+  width: 1.44rem;
+  height: 1.52rem;
+}
+
+main .page-wrap .cell-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0.16rem 0;
+  height: 5.08rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+main .page-wrap .cell-box img {
+  display: inline-block;
+  width: 3.58rem;
+  height: 2.52rem;
+}
+
+main .page-wrap .cell-box img:nth-of-type(1) {
+  width: 3.58rem;
+  height: 5.08rem;
+}
+
+main .page-wrap .bestselling {
+  margin-bottom: 0.70rem;
+}
+
+main .page-wrap .bestselling img {
+  width: 100%;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  z-index: 1;
+  background-color: #fff;
+}
+
+footer .footer-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  height: 1rem;
+  font-size: 0;
+  -webkit-box-shadow: 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+footer .footer-wrapper .footer-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+footer .footer-wrapper .footer-items img {
+  display: block;
+  height: 0.4rem;
+  width: 0.4rem;
+  margin-bottom: .1rem;
+}
+
+footer .footer-wrapper .footer-items span {
+  font-size: .22rem;
+  color: #777;
+}
+/*# sourceMappingURL=mi-mobel.css.map */
