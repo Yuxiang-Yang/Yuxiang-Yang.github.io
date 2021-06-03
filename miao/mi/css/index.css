@@ -1228,14 +1228,18 @@ i{
   border-color: #f25807;
 }
 .home-tool-bar{
-  display: none;
+  display: flex;
+  flex-flow: column;
   position:fixed;
   bottom: 70px;
   right:0;
   z-index:5;
 }
 .home-tool-bar a{
-  display: block;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
   width: 82px;
   height: 90px;
   color: #999;
@@ -1259,5 +1263,20 @@ i{
   font-size: 2.5em;
   color:#999999;
   margin-bottom: 8px;
-  padding-top: 18px;
+}
+
+@media (max-width:1456px){
+  .home-tool-bar a{
+    width: 25px;
+    height: 40px;
+  }
+  .home-tool-bar .mi{
+    font-size: 1.2em;
+  }
+  .home-tool-bar span{
+    display: none;
+  }
+  .home-tool-bar .mi{
+    padding-top:10px;
+  }
 }
