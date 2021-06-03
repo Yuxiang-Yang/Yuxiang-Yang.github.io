@@ -413,26 +413,78 @@ i{
   border-color: rgb(0,0,0,0.4);
   background-color: rgb(255,255,255,0.4);
 }
-.home-hero label:hover{
+.home-hero>label:hover{
   border-color: rgb(0,0,0,0.4);
   background-color: rgb(255,255,255,0.4);
 }
-.home-hero label:focus{
+.home-hero>label:focus{
   border-color: rgb(0,0,0,0.4);
   background-color: rgb(255,255,255,0.4);
 }
-.home-hero label:nth-of-type(1){
+.home-hero>label:nth-of-type(1){
   right:80px;
 }
-.home-hero label:nth-of-type(2){
+.home-hero>label:nth-of-type(2){
   right:60px;
 }
-.home-hero label:nth-of-type(3){
+.home-hero>label:nth-of-type(3){
   right:40px;
 }
-.home-hero label:nth-of-type(4){
+.home-hero>label:nth-of-type(4){
   right:20px;
 }
+.home-hero label.sliderbtn{
+  display: none;
+  left: 234px;
+  top: 194px;
+  width: 41px;
+  height: 69px;
+  border:0;
+  border-radius: 0;
+  transition: 0;
+  background-color: transparent;
+  background: url(../images/arrows.png);
+}
+
+.home-hero label.sliderbtn.left{
+  background-position: -83px 0;
+}
+.home-hero label.sliderbtn.left:hover{
+  background-position: 0 0 ;
+}
+.home-hero label.sliderbtn.right{
+  left:auto;
+  right:0;
+  background-position: -123px 0;
+}
+.home-hero label.sliderbtn.right:hover{
+  background-position: -41px 0 ;
+}
+.home-hero #switch1:checked~div .sliderbtn:nth-child(1){
+  display: block;
+}
+.home-hero #switch1:checked~div .sliderbtn:nth-child(2){
+  display: block;
+}
+.home-hero #switch2:checked~div .sliderbtn:nth-child(3){
+  display: block;
+}
+.home-hero #switch2:checked~div .sliderbtn:nth-child(4){
+  display: block;
+}
+.home-hero #switch3:checked~div .sliderbtn:nth-child(5){
+  display: block;
+}
+.home-hero #switch3:checked~div .sliderbtn:nth-child(6){
+  display: block;
+}
+.home-hero #switch4:checked~div .sliderbtn:nth-child(7){
+  display: block;
+}
+.home-hero #switch4:checked~div .sliderbtn:nth-child(8){
+  display: block;
+}
+
 .switch-container{
   width: 100%;
   height: 460px;
@@ -565,9 +617,8 @@ i{
   font-weight:lighter;
 }
 .home-flashsale{
-  height: 398px;
+  position: relative;
 }
-
 .home-flashsale .box-bd{
   height: 340px;
 }
@@ -633,15 +684,76 @@ i{
   height: 340px;
   margin-right: 14px;
   background-color: #fff;
-  transform:translateX(0);
   border-top:1px solid #ffac13;
+  transition: transform 1s;
 }
 .flashsale-salelist .swiper-wrapper li:last-child{
   margin-right: 0;
 }
-.flashsale-salelist .box-hd #prev:checked~.swiper-wrapper li{
-  transform: translateX(978px);
+.home-flashsale input[type='radio']{
+  display: none;
 }
+.home-flashsale label{
+  position: absolute;
+  display: none;
+  overflow: hidden;
+  top:20px;
+  right: 0;
+  width: 24px;
+  height: 16px;
+  z-index: 1;
+  padding: 3px 5px;
+  border: 1px solid #e0e0e0;
+}
+.home-flashsale label.left{
+  right: 34px;
+}
+.home-flashsale label.left::before{
+  margin-left: 4px;
+}
+.home-flashsale label.right::before{
+  margin-left: 5px;
+}
+.home-flashsale label::before{
+  color: #e0e0e0;
+  font-size: 1.2em;
+  transition: color .3s;
+}
+.home-flashsale label:hover::before{
+  color: #ff6700;
+}
+
+.home-flashsale #flashsale1:checked~.box-bd .swiper-wrapper li{
+  transform: translateX(0);
+}
+.home-flashsale #flashsale2:checked~.box-bd .swiper-wrapper li{
+  transform: translateX(-990px);
+}
+.home-flashsale #flashsale3:checked~.box-bd .swiper-wrapper li{
+  transform: translateX(-1982px);
+}
+.home-flashsale #flashsale4:checked~.box-bd .swiper-wrapper li{
+  transform: translateX(-2732px);
+}
+.home-flashsale #flashsale1:checked~.page1 label{
+  display: block;
+}
+.home-flashsale #flashsale1:checked~.page1 label:nth-of-type(1){
+  pointer-events: none;
+}
+.home-flashsale #flashsale2:checked~.page2 label{
+  display: block;
+}
+.home-flashsale #flashsale3:checked~.page3 label{
+  display: block;
+}
+.home-flashsale #flashsale4:checked~.page4 label{
+  display: block;
+}
+.home-flashsale #flashsale4:checked~.page4 label:nth-of-type(2){
+  pointer-events: none;
+}
+
 .flashsale-salelist .swiper-wrapper .content{
   display: flex;
   flex-flow: column wrap;
@@ -1116,6 +1228,7 @@ i{
   border-color: #f25807;
 }
 .home-tool-bar{
+  display: none;
   position:fixed;
   bottom: 70px;
   right:0;
