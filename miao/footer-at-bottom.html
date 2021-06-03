@@ -12,42 +12,93 @@
       height: 100%;
       margin: 0;
     }
-
     * {
       box-sizing: border-box;
     }
-
     header {
       height: 60px;
       line-height: 60px;
-      padding: 0 375px 0 375px;
       font-size: 1.5em;
       background-color: #f5f5f5;
     }
-
-    .content {
-      padding: 30px 375px 60px 375px;
-      line-height: 1.8em;
-      min-height: calc(100vh - 60px);
+    header span{
+      display: block;
+      width: 1140px;
+      margin: 0 auto;
     }
-
+    .content {
+      padding: 10px 0 10px 0;
+      width: 1140px;
+      margin: 0 auto;
+      line-height: 1.8em;
+      min-height: calc(100vh - 120px);
+    }
+    
+    .content p{
+      font-size: 18px;
+      text-align: justify;
+    }
+    
+    .content p:first-letter{
+     font-size: 2em;
+    }
+    
+    .content h1{
+      border-bottom: 1px solid #eeeeee;
+      padding-bottom: 20px;
+    }
     footer {
       height: 60px;
       background-color: #f5f5f5;
-      margin-top: -60px;
       line-height: 60px;
       font-size: 1.5em;
-      padding: 0 375px 0 375px;
+    }
+    footer span{
+      display: block;
+      width: 1140px;
+      margin: 0 auto;
+    }
+    @media (max-width: 1200px){
+      .content,
+      header span,
+      footer span {
+      width: 940px;
+      }
+    }
+
+    @media (max-width: 1000px){
+      .content,
+      header span,
+      footer span {
+      width: 750px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>Header</header>
-  <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis laborum earum iusto totam
-    reiciendis sint cum, quasi odit, doloribus voluptate quas excepturi beatae tenetur! Repudiandae tempore quibusdam
-    aut aliquam adipisci!</div>
-  <footer>footer</footer>
+  <header><span>Header</span></header>
+  <div class="content">
+    <h1>Sticky footer with fixed navbar</h1>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis ea consequuntur, quo assumenda
+      aliquam voluptates provident veritatis soluta non fuga unde esse, laborum porro modi tempora doloribus quibusdam
+      nihil
+      inventore officia excepturi in iste! Corporis voluptatibus impedit porro magni officiis. Repellendus et voluptatibus
+      nobis molestiae magnam, necessitatibus enim neque mollitia eos dolor similique quisquam, vel labore! </p>
+    <p>Voluptates nam
+      debitis maxime nesciunt aliquid, ipsum quam temporibus suscipit voluptas exercitationem pariatur totam illo ratione
+      illum veniam recusandae? Eligendi fugit, quasi eum sint nesciunt earum porro deserunt officia fugiat consequuntur ad
+      quaerat perferendis. Maxime ratione labore illo? Fuga eveniet doloremque tempora expedita repellendus, unde incidunt
+      harum quae recusandae id vel voluptates ratione, vero soluta sit possimus! </p>
+    <p>Quis sunt exercitationem dolore ea ipsam
+      iste esse modi suscipit sint quos cum repellat atque, nisi excepturi? Aut dignissimos molestias facilis doloremque
+      nobis recusandae sequi qui magni, non quasi debitis optio consequatur at minima? Cum ipsa libero, aspernatur est
+      perferendis ut voluptas asperiores porro necessitatibus, nemo ab eos magni sed non debitis earum expedita harum ad
+      provident minima voluptate dolorum impedit. Harum reiciendis maiores ea totam molestiae, tempora hic ut corporis
+      minus
+      exercitationem.</p>
+  </div>
+  <footer><span>footer</span></footer>
   </div>
 </body>
 

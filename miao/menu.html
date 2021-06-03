@@ -1,0 +1,886 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-14 19:05:14
+ * @LastEditTime : 2020-10-20 19:00:21
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \作业_MIAO_respository\css-menu.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>层级菜单 newerONE</title>
+  <link rel="stylesheet" href="./css/specialPrompt.css">
+  <style>
+    :root {
+      /* zoom: 1.25; */
+      font-family: Segoe WPC, Segoe UI, Microsoft YaHei, sans-serif;
+      font-size: 13px;
+    }
+
+    body {
+      margin: 0;
+      background-color: #2b312c;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+    }
+
+    .topbar {
+      background-color: #3c3c3c;
+      min-width: 500px;
+      font-size: 0;
+    }
+
+    .topbar img {
+      width: 13px;
+      height: 13px;
+      margin: auto 10px;
+      object-fit: scale-down;
+      vertical-align: middle;
+    }
+
+    .left-menu {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .left-menu>li {
+      font-size: 1rem;
+      height: 30px;
+      line-height: 30px;
+      color: #ccc;
+      float: left;
+      padding: 0 8px;
+
+      position: relative;
+    }
+
+    .left-menu>li:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .left-menu ul.sonMenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+
+    }
+
+    .sonMenu,
+    .gsonMenu {
+      background-color: #3c3c3c;
+      box-shadow: 1px 1px 5px #1d211e;
+    }
+
+    .left-menu ul.sonMenu li {
+      display: none;
+      color: #fff;
+      white-space: nowrap;
+      padding: 0 30px;
+      min-width: 180px;
+    }
+
+    .left-menu ul.sonMenu li:after {
+      content: attr(d-shortKey);
+      position: absolute;
+      right: 30px;
+    }
+
+    /* --------------- */
+    .left-menu>li .sonMenu li {
+      position: relative;
+    }
+
+    .left-menu li:hover>ul>li {
+      display: block;
+    }
+
+    .left-menu>li:hover .sonMenu li:hover {
+      background-color: #094771;
+    }
+
+    /* 向右呼出子层级菜单 */
+    .sonMenu li .gsonMenu li {
+      display: none;
+    }
+
+    .sonMenu li .gsonMenu {
+      position: absolute;
+      display: block;
+      left: 100%;
+      top: 0;
+    }
+
+    .sonMenu li:hover .gsonMenu li {
+      /* display: block; */
+    }
+
+    /* 有子层级的右箭头标注 */
+    .gsonMenu:before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 2px solid;
+      border-left: none;
+      border-bottom: none;
+      transform: rotate(45deg);
+      left: -25px;
+      top: 10px;
+    }
+
+    /* --------无关-▉▉-------- */
+    nav.topbar {
+      position: fixed;
+      width: 100vw;
+      top: 0;
+    }
+
+    main span.sakura {
+      position: absolute;
+      z-index: -1;
+      font-size: 20vw;
+      font-weight: 900;
+      color: #617172;
+      line-height: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    foot.footbar {
+      height: 20px;
+      width: 100vw;
+      background-color: #134857;
+      color: white;
+      position: fixed;
+      bottom: 0;
+    }
+
+    .note {
+      margin-top: 100px;
+      /* color: white; */
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .prompt,
+    .note {
+      border-left: 4px solid #42b983;
+      padding: 10px 15px;
+      color: #777;
+      background-color: rgba(66, 185, 131, .1);
+      font-size: 20px;
+      max-width: 60%;
+      margin: 25px auto;
+      margin-left: 5%;
+      line-height: 1.5;
+      /* white-space: pre-line; 以此代替使用br排版 */
+    }
+
+    .prompt .note,
+    .note .note {
+      max-width: initial;
+    }
+
+    .prompt span.del,
+    .note span.del {
+      text-decoration: line-through;
+    }
+
+    .prompt em,
+    .note em {
+      font-style: normal;
+      background-color: #f8f8f8;
+      color: #e96900;
+
+      margin: 0 2px;
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+
+    .promptBottom {
+      font-family: '宋体', serif;
+      color: red;
+      border: 2px solid blue;
+      background-color: rgba(245, 245, 245, .5);
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="topbar">
+    <img src="./img/oth/vscodeICON.jpg" alt="">
+    <ul class="left-menu">
+      <li>文件(F)
+        <ul class="sonMenu">
+          <li d-shortKey='Ctrl+N'>新建文件</li>
+          <li d-shortKey='Ctrl+Shift+N'>新建窗口</li>
+          <li d-shortKey='Ctrl+O'>打开文件…</li>
+          <li d-shortKey='Ctrl+K Ctrl+O'>打开文件夹…</li>
+          <li>打开工作区…</li>
+          <li>打开最近的文件
+            <ul class="gsonMenu">
+              <li>穿越时空的少女(1080p)
+                <ul class="gsonMenu">
+                  <li>原画集-贞本义行</li>
+                  <li>分镜集-细田守</li>
+                  <li>原声带- <a href="http://music.163.com/song?id=4899625&userid=96447162">ガーネット</a> </li>
+                  <li>about监督细田守
+                    <ul class="gsonMenu">
+                      <li>穿越时空的少女</li>
+                      <li>夏日大作战</li>
+                      <li>oth......</li>
+                      <li>听见涛声</li>
+                      <li>言叶之庭</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>VanillaSky.mp4</li>
+              <li>Monokai.css</li>
+              <li>ReadME.md</li>
+              <li></li>
+            </ul>
+          </li>
+          <li>将文件夹添加到工作区</li>
+          <li>将工作区另存为
+            <ul class="gsonMenu">
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+            </ul>
+          </li>
+          <li d-shortKey='Ctrl+S'>保存</li>
+          <li>另存为…
+            <ul class="gsonMenu">
+              <li>机械的</li>
+              <li>灵活的</li>
+              <li>犹豫的</li>
+              <li>可可爱爱的</li>
+              <li>蹦蹦跳跳的
+                <ul class="gsonMenu">
+                  <li>灰白色</li>
+                  <li>草叶清</li>
+                  <li>乳酸发酵</li>
+                  <li>庭前听蛙鸣</li>
+                  <li>腐烂页</li>
+                </ul>
+              </li>
+              <li>:tada:</li>
+            </ul>
+          </li>
+          <li>全部保存</li>
+          <li>自动保存</li>
+          <li>首选项
+            <ul class="gsonMenu">
+              <!-- grandson -->
+              <li d-shortKey='Ctrl+,'>设置</li>
+              <li>联机服务设置</li>
+              <li d-shortKey='Ctrl+Shift+X'>扩展</li>
+              <li d-shortKey='Ctrl+S'>键盘快捷方式</li>
+              <li d-shortKey='Ctrl+M'>键映射</li>
+              <li>用户片段</li>
+              <li d-shortKey='Ctrl+T'>颜色主题</li>
+              <li>文件图标主题</li>
+            </ul>
+          </li>
+          <li>还原文件</li>
+          <li>……</li>
+        </ul>
+      </li>
+      <li>编辑(E)
+        <ul class="sonMenu">
+          <li d-shortKey='Ctrl+N'>新建文件</li>
+          <li d-shortKey='Ctrl+Shift+N'>新建窗口</li>
+          <li d-shortKey='Ctrl+O'>打开文件…</li>
+          <li d-shortKey='Ctrl+K Ctrl+O'>打开文件夹…</li>
+          <li>打开工作区…</li>
+          <li>打开最近的文件
+            <ul class="gsonMenu">
+              <li>穿越时空的少女(1080p)
+                <ul class="gsonMenu">
+                  <li>原画集-贞本义行</li>
+                  <li>分镜集-细田守</li>
+                  <li>原声带- <a href="http://music.163.com/song?id=4899625&userid=96447162">ガーネット</a> </li>
+                  <li>about监督细田守
+                    <ul class="gsonMenu">
+                      <li>穿越时空的少女</li>
+                      <li>夏日大作战</li>
+                      <li>oth......</li>
+                      <li>听见涛声</li>
+                      <li>言叶之庭</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>VanillaSky.mp4</li>
+              <li>Monokai.css</li>
+              <li>ReadME.md</li>
+              <li></li>
+            </ul>
+          </li>
+          <li>将文件夹添加到工作区</li>
+          <li>将工作区另存为
+            <ul class="gsonMenu">
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+            </ul>
+          </li>
+          <li d-shortKey='Ctrl+S'>保存</li>
+          <li>另存为…
+            <ul class="gsonMenu">
+              <li>机械的</li>
+              <li>灵活的</li>
+              <li>犹豫的</li>
+              <li>可可爱爱的</li>
+              <li>蹦蹦跳跳的
+                <ul class="gsonMenu">
+                  <li>灰白色</li>
+                  <li>草叶清</li>
+                  <li>乳酸发酵</li>
+                  <li>庭前听蛙鸣</li>
+                  <li>腐烂页</li>
+                </ul>
+              </li>
+              <li>:tada:</li>
+            </ul>
+          </li>
+          <li>全部保存</li>
+          <li>自动保存</li>
+          <li>首选项
+            <ul class="gsonMenu">
+              <!-- grandson -->
+              <li d-shortKey='Ctrl+,'>设置</li>
+              <li>联机服务设置</li>
+              <li d-shortKey='Ctrl+Shift+X'>扩展</li>
+              <li d-shortKey='Ctrl+S'>键盘快捷方式</li>
+              <li d-shortKey='Ctrl+M'>键映射</li>
+              <li>用户片段</li>
+              <li d-shortKey='Ctrl+T'>颜色主题</li>
+              <li>文件图标主题</li>
+            </ul>
+          </li>
+          <li>还原文件</li>
+          <li>……</li>
+        </ul>
+      </li>
+      <li>选择(S)
+        <ul class="sonMenu">
+          <li d-shortKey='Ctrl+N'>新建文件</li>
+          <li d-shortKey='Ctrl+Shift+N'>新建窗口</li>
+          <li d-shortKey='Ctrl+O'>打开文件…</li>
+          <li d-shortKey='Ctrl+K Ctrl+O'>打开文件夹…</li>
+          <li>打开工作区…</li>
+          <li>打开最近的文件
+            <ul class="gsonMenu">
+              <li>穿越时空的少女(1080p)
+                <ul class="gsonMenu">
+                  <li>原画集-贞本义行</li>
+                  <li>分镜集-细田守</li>
+                  <li>原声带- <a href="http://music.163.com/song?id=4899625&userid=96447162">ガーネット</a> </li>
+                  <li>about监督细田守
+                    <ul class="gsonMenu">
+                      <li>穿越时空的少女</li>
+                      <li>夏日大作战</li>
+                      <li>oth......</li>
+                      <li>听见涛声</li>
+                      <li>言叶之庭</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>VanillaSky.mp4</li>
+              <li>Monokai.css</li>
+              <li>ReadME.md</li>
+              <li></li>
+            </ul>
+          </li>
+          <li>将文件夹添加到工作区</li>
+          <li>将工作区另存为
+            <ul class="gsonMenu">
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+            </ul>
+          </li>
+          <li d-shortKey='Ctrl+S'>保存</li>
+          <li>另存为…
+            <ul class="gsonMenu">
+              <li>机械的</li>
+              <li>灵活的</li>
+              <li>犹豫的</li>
+              <li>可可爱爱的</li>
+              <li>蹦蹦跳跳的
+                <ul class="gsonMenu">
+                  <li>灰白色</li>
+                  <li>草叶清</li>
+                  <li>乳酸发酵</li>
+                  <li>庭前听蛙鸣</li>
+                  <li>腐烂页</li>
+                </ul>
+              </li>
+              <li>:tada:</li>
+            </ul>
+          </li>
+          <li>全部保存</li>
+          <li>自动保存</li>
+          <li>首选项
+            <ul class="gsonMenu">
+              <!-- grandson -->
+              <li d-shortKey='Ctrl+,'>设置</li>
+              <li>联机服务设置</li>
+              <li d-shortKey='Ctrl+Shift+X'>扩展</li>
+              <li d-shortKey='Ctrl+S'>键盘快捷方式</li>
+              <li d-shortKey='Ctrl+M'>键映射</li>
+              <li>用户片段</li>
+              <li d-shortKey='Ctrl+T'>颜色主题</li>
+              <li>文件图标主题</li>
+            </ul>
+          </li>
+          <li>还原文件</li>
+          <li>……</li>
+        </ul>
+      </li>
+      <li>查看(V)
+        <ul class="sonMenu">
+          <li d-shortKey='Ctrl+N'>新建文件</li>
+          <li d-shortKey='Ctrl+Shift+N'>新建窗口</li>
+          <li d-shortKey='Ctrl+O'>打开文件…</li>
+          <li d-shortKey='Ctrl+K Ctrl+O'>打开文件夹…</li>
+          <li>打开工作区…</li>
+          <li>打开最近的文件
+            <ul class="gsonMenu">
+              <li>穿越时空的少女(1080p)
+                <ul class="gsonMenu">
+                  <li>原画集-贞本义行</li>
+                  <li>分镜集-细田守</li>
+                  <li>原声带- <a href="http://music.163.com/song?id=4899625&userid=96447162">ガーネット</a> </li>
+                  <li>about监督细田守
+                    <ul class="gsonMenu">
+                      <li>穿越时空的少女</li>
+                      <li>夏日大作战</li>
+                      <li>oth......</li>
+                      <li>听见涛声</li>
+                      <li>言叶之庭</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>VanillaSky.mp4</li>
+              <li>Monokai.css</li>
+              <li>ReadME.md</li>
+              <li></li>
+            </ul>
+          </li>
+          <li>将文件夹添加到工作区</li>
+          <li>将工作区另存为
+            <ul class="gsonMenu">
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+            </ul>
+          </li>
+          <li d-shortKey='Ctrl+S'>保存</li>
+          <li>另存为…
+            <ul class="gsonMenu">
+              <li>机械的</li>
+              <li>灵活的</li>
+              <li>犹豫的</li>
+              <li>可可爱爱的</li>
+              <li>蹦蹦跳跳的
+                <ul class="gsonMenu">
+                  <li>灰白色</li>
+                  <li>草叶清</li>
+                  <li>乳酸发酵</li>
+                  <li>庭前听蛙鸣</li>
+                  <li>腐烂页</li>
+                </ul>
+              </li>
+              <li>:tada:</li>
+            </ul>
+          </li>
+          <li>全部保存</li>
+          <li>自动保存</li>
+          <li>首选项
+            <ul class="gsonMenu">
+              <!-- grandson -->
+              <li d-shortKey='Ctrl+,'>设置</li>
+              <li>联机服务设置</li>
+              <li d-shortKey='Ctrl+Shift+X'>扩展</li>
+              <li d-shortKey='Ctrl+S'>键盘快捷方式</li>
+              <li d-shortKey='Ctrl+M'>键映射</li>
+              <li>用户片段</li>
+              <li d-shortKey='Ctrl+T'>颜色主题</li>
+              <li>文件图标主题</li>
+            </ul>
+          </li>
+          <li>还原文件</li>
+          <li>……</li>
+        </ul>
+      </li>
+      <li>转到(G)
+        <ul class="sonMenu">
+          <li d-shortKey='Ctrl+N'>新建文件</li>
+          <li d-shortKey='Ctrl+Shift+N'>新建窗口</li>
+          <li d-shortKey='Ctrl+O'>打开文件…</li>
+          <li d-shortKey='Ctrl+K Ctrl+O'>打开文件夹…</li>
+          <li>打开工作区…</li>
+          <li>打开最近的文件
+            <ul class="gsonMenu">
+              <li>穿越时空的少女(1080p)
+                <ul class="gsonMenu">
+                  <li>原画集-贞本义行</li>
+                  <li>分镜集-细田守</li>
+                  <li>原声带- <a href="http://music.163.com/song?id=4899625&userid=96447162">ガーネット</a> </li>
+                  <li>about监督细田守
+                    <ul class="gsonMenu">
+                      <li>穿越时空的少女</li>
+                      <li>夏日大作战</li>
+                      <li>oth......</li>
+                      <li>听见涛声</li>
+                      <li>言叶之庭</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>VanillaSky.mp4</li>
+              <li>Monokai.css</li>
+              <li>ReadME.md</li>
+              <li></li>
+            </ul>
+          </li>
+          <li>将文件夹添加到工作区</li>
+          <li>将工作区另存为
+            <ul class="gsonMenu">
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+            </ul>
+          </li>
+          <li d-shortKey='Ctrl+S'>保存</li>
+          <li>另存为…
+            <ul class="gsonMenu">
+              <li>机械的</li>
+              <li>灵活的</li>
+              <li>犹豫的</li>
+              <li>可可爱爱的</li>
+              <li>蹦蹦跳跳的
+                <ul class="gsonMenu">
+                  <li>灰白色</li>
+                  <li>草叶清</li>
+                  <li>乳酸发酵</li>
+                  <li>庭前听蛙鸣</li>
+                  <li>腐烂页</li>
+                </ul>
+              </li>
+              <li>:tada:</li>
+            </ul>
+          </li>
+          <li>全部保存</li>
+          <li>自动保存</li>
+          <li>首选项
+            <ul class="gsonMenu">
+              <!-- grandson -->
+              <li d-shortKey='Ctrl+,'>设置</li>
+              <li>联机服务设置</li>
+              <li d-shortKey='Ctrl+Shift+X'>扩展</li>
+              <li d-shortKey='Ctrl+S'>键盘快捷方式</li>
+              <li d-shortKey='Ctrl+M'>键映射</li>
+              <li>用户片段</li>
+              <li d-shortKey='Ctrl+T'>颜色主题</li>
+              <li>文件图标主题</li>
+            </ul>
+          </li>
+          <li>还原文件</li>
+          <li>……</li>
+        </ul>
+      </li>
+      <li>运行(R)
+        <ul class="sonMenu">
+          <li d-shortKey='Ctrl+N'>新建文件</li>
+          <li d-shortKey='Ctrl+Shift+N'>新建窗口</li>
+          <li d-shortKey='Ctrl+O'>打开文件…</li>
+          <li d-shortKey='Ctrl+K Ctrl+O'>打开文件夹…</li>
+          <li>打开工作区…</li>
+          <li>打开最近的文件
+            <ul class="gsonMenu">
+              <li>穿越时空的少女(1080p)
+                <ul class="gsonMenu">
+                  <li>原画集-贞本义行</li>
+                  <li>分镜集-细田守</li>
+                  <li>原声带- <a href="http://music.163.com/song?id=4899625&userid=96447162">ガーネット</a> </li>
+                  <li>about监督细田守
+                    <ul class="gsonMenu">
+                      <li>穿越时空的少女</li>
+                      <li>夏日大作战</li>
+                      <li>oth......</li>
+                      <li>听见涛声</li>
+                      <li>言叶之庭</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>VanillaSky.mp4</li>
+              <li>Monokai.css</li>
+              <li>ReadME.md</li>
+              <li></li>
+            </ul>
+          </li>
+          <li>将文件夹添加到工作区</li>
+          <li>将工作区另存为
+            <ul class="gsonMenu">
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+            </ul>
+          </li>
+          <li d-shortKey='Ctrl+S'>保存</li>
+          <li>另存为…
+            <ul class="gsonMenu">
+              <li>机械的</li>
+              <li>灵活的</li>
+              <li>犹豫的</li>
+              <li>可可爱爱的</li>
+              <li>蹦蹦跳跳的
+                <ul class="gsonMenu">
+                  <li>灰白色</li>
+                  <li>草叶清</li>
+                  <li>乳酸发酵</li>
+                  <li>庭前听蛙鸣</li>
+                  <li>腐烂页</li>
+                </ul>
+              </li>
+              <li>:tada:</li>
+            </ul>
+          </li>
+          <li>全部保存</li>
+          <li>自动保存</li>
+          <li>首选项
+            <ul class="gsonMenu">
+              <!-- grandson -->
+              <li d-shortKey='Ctrl+,'>设置</li>
+              <li>联机服务设置</li>
+              <li d-shortKey='Ctrl+Shift+X'>扩展</li>
+              <li d-shortKey='Ctrl+S'>键盘快捷方式</li>
+              <li d-shortKey='Ctrl+M'>键映射</li>
+              <li>用户片段</li>
+              <li d-shortKey='Ctrl+T'>颜色主题</li>
+              <li>文件图标主题</li>
+            </ul>
+          </li>
+          <li>还原文件</li>
+          <li>……</li>
+        </ul>
+      </li>
+      <li>终端(T)
+        <ul class="sonMenu">
+          <li d-shortKey='Ctrl+N'>新建文件</li>
+          <li d-shortKey='Ctrl+Shift+N'>新建窗口</li>
+          <li d-shortKey='Ctrl+O'>打开文件…</li>
+          <li d-shortKey='Ctrl+K Ctrl+O'>打开文件夹…</li>
+          <li>打开工作区…</li>
+          <li>打开最近的文件
+            <ul class="gsonMenu">
+              <li>穿越时空的少女(1080p)
+                <ul class="gsonMenu">
+                  <li>原画集-贞本义行</li>
+                  <li>分镜集-细田守</li>
+                  <li>原声带- <a href="http://music.163.com/song?id=4899625&userid=96447162">ガーネット</a> </li>
+                  <li>about监督细田守
+                    <ul class="gsonMenu">
+                      <li>穿越时空的少女</li>
+                      <li>夏日大作战</li>
+                      <li>oth......</li>
+                      <li>听见涛声</li>
+                      <li>言叶之庭</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>VanillaSky.mp4</li>
+              <li>Monokai.css</li>
+              <li>ReadME.md</li>
+              <li></li>
+            </ul>
+          </li>
+          <li>将文件夹添加到工作区</li>
+          <li>将工作区另存为
+            <ul class="gsonMenu">
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+            </ul>
+          </li>
+          <li d-shortKey='Ctrl+S'>保存</li>
+          <li>另存为…
+            <ul class="gsonMenu">
+              <li>机械的</li>
+              <li>灵活的</li>
+              <li>犹豫的</li>
+              <li>可可爱爱的</li>
+              <li>蹦蹦跳跳的
+                <ul class="gsonMenu">
+                  <li>灰白色</li>
+                  <li>草叶清</li>
+                  <li>乳酸发酵</li>
+                  <li>庭前听蛙鸣</li>
+                  <li>腐烂页</li>
+                </ul>
+              </li>
+              <li>:tada:</li>
+            </ul>
+          </li>
+          <li>全部保存</li>
+          <li>自动保存</li>
+          <li>首选项
+            <ul class="gsonMenu">
+              <!-- grandson -->
+              <li d-shortKey='Ctrl+,'>设置</li>
+              <li>联机服务设置</li>
+              <li d-shortKey='Ctrl+Shift+X'>扩展</li>
+              <li d-shortKey='Ctrl+S'>键盘快捷方式</li>
+              <li d-shortKey='Ctrl+M'>键映射</li>
+              <li>用户片段</li>
+              <li d-shortKey='Ctrl+T'>颜色主题</li>
+              <li>文件图标主题</li>
+            </ul>
+          </li>
+          <li>还原文件</li>
+          <li>……</li>
+        </ul>
+      </li>
+      <li>帮助(H)
+        <ul class="sonMenu">
+          <li d-shortKey='Ctrl+N'>新建文件</li>
+          <li d-shortKey='Ctrl+Shift+N'>新建窗口</li>
+          <li d-shortKey='Ctrl+O'>打开文件…</li>
+          <li d-shortKey='Ctrl+K Ctrl+O'>打开文件夹…</li>
+          <li>打开工作区…</li>
+          <li>打开最近的文件
+            <ul class="gsonMenu">
+              <li>穿越时空的少女(1080p)
+                <ul class="gsonMenu">
+                  <li>原画集-贞本义行</li>
+                  <li>分镜集-细田守</li>
+                  <li>原声带- <a href="http://music.163.com/song?id=4899625&userid=96447162">ガーネット</a> </li>
+                  <li>about监督细田守
+                    <ul class="gsonMenu">
+                      <li>穿越时空的少女</li>
+                      <li>夏日大作战</li>
+                      <li>oth......</li>
+                      <li>听见涛声</li>
+                      <li>言叶之庭</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>VanillaSky.mp4</li>
+              <li>Monokai.css</li>
+              <li>ReadME.md</li>
+              <li></li>
+            </ul>
+          </li>
+          <li>将文件夹添加到工作区</li>
+          <li>将工作区另存为
+            <ul class="gsonMenu">
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Officia, dolores voluptates? Neque, fugiat.</li>
+            </ul>
+          </li>
+          <li d-shortKey='Ctrl+S'>保存</li>
+          <li>另存为…
+            <ul class="gsonMenu">
+              <li>机械的</li>
+              <li>灵活的</li>
+              <li>犹豫的</li>
+              <li>可可爱爱的</li>
+              <li>蹦蹦跳跳的
+                <ul class="gsonMenu">
+                  <li>灰白色</li>
+                  <li>草叶清</li>
+                  <li>乳酸发酵</li>
+                  <li>庭前听蛙鸣</li>
+                  <li>腐烂页</li>
+                </ul>
+              </li>
+              <li>:tada:</li>
+            </ul>
+          </li>
+          <li>全部保存</li>
+          <li>自动保存</li>
+          <li>首选项
+            <ul class="gsonMenu">
+              <!-- grandson -->
+              <li d-shortKey='Ctrl+,'>设置</li>
+              <li>联机服务设置</li>
+              <li d-shortKey='Ctrl+Shift+X'>扩展</li>
+              <li d-shortKey='Ctrl+S'>键盘快捷方式</li>
+              <li d-shortKey='Ctrl+M'>键映射</li>
+              <li>用户片段</li>
+              <li d-shortKey='Ctrl+T'>颜色主题</li>
+              <li>文件图标主题</li>
+            </ul>
+          </li>
+          <li>还原文件</li>
+          <li>……</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <main>
+    <div class="note">
+      <pre>
+        <code>.left-menu  li:hover>ul>li {
+                  display: block;
+              }
+      </code>
+      </pre>
+      以此只隔1层选择，不要太局限在类名，避免css冗余<br>
+      原先错误倾向，甚至想每一层子级菜单都想单独给个类名，属实傻啵咿
+    </div>
+    <span class="sakura">Code <br> Sakura</span>
+  </main>
+  <foot class="footbar">&copy; dont know what here properly</foot>
+</body>
+
+</html>

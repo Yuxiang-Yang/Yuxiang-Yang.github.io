@@ -1,0 +1,11 @@
+main{
+  section{
+    @for $i from 1 through 20{
+      div{
+      width: 200px;
+      height: 200px;
+      border:#{$i}px solid red;
+    }
+    }
+  }
+}
