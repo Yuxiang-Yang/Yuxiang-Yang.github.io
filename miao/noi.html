@@ -274,7 +274,7 @@
     console.log('Invalid operator!');
   }
 </script>
-<script id="ch0104/20">
+<script id="ch0104/20" type="DNR">
   let a = +prompt('a:');
   let b = +prompt('b:');
   let c = +prompt('c:');
@@ -298,92 +298,372 @@
 </script>
 
 
-<script id="ch0105/01">
+<script id="ch0105/01" type="DNR">
+  let count = +prompt('请输入学生人数，范围为1到100');
+  while (count <= 1 || count >= 100) {
+    count = +prompt('输入年龄超越范围，请重新输入');
+  }
+  let ages = [];
+  for (let i = 0; i < count; i++) {
+    let temp = +prompt('请输入学生年龄，范围为15到25');
+    if (temp >= 15 && temp <= 25) {
+      ages[i] = temp;
+    } else {
+      alert('输入年龄超越范围，请重新输入');
+      continue;
+    }
+  }
+  let avgAge = ages.reduce((sum, current) => sum += current, 0) / count;
+  console.log(avgAge.toFixed(2));
+</script>
+<script id="ch0105/02" type="DNR">
+  let surplus = [];
+  for (let i = 0; i < 12; i++) {
+    surplus[i] = +prompt('surplus:');
+  }
+  let avgSurplus = surplus.reduce((sum, current) => sum += current, 0) / 12;
+  console.log('$' + avgSurplus.toFixed(2));
+</script>
+<script id="ch0105/03" type="DNR">
+  let count = +prompt('count:');
+  while (count <= 1 || count >= 100) {
+    count = +prompt('输入超越范围，请重新输入');
+  }
+  let samples = [];
+  for (let i = 0; i < count; i++) {
+    samples[i] = +prompt('samples:');
+  }
+  let average = samples.reduce((sum, current) => sum += current, 0) / count;
+  console.log(average.toFixed(4));
+</script>
+<script id="ch0105/04" type="DNR">
+  let count = +prompt('count:');
+  while (count <= 1 || count >= 100) {
+    count = +prompt('输入超越范围，请重新输入');
+  }
+  let samples = [];
+  for (let i = 0; i < count; i++) {
+    samples[i] = +prompt('samples:');
+  }
+  let total = samples.reduce((sum, current) => sum += current, 0);
+  let average = (total / count);
+  console.log(total);
+  console.log(average.toFixed(5));
+</script>
+<script id="ch0105/05" type="DNR">
+  let count = +prompt('count:');
+  while (count <= 1 || count >= 100) {
+    count = +prompt('输入超越范围，请重新输入');
+  }
+  let scores = [];
+  for (let i = 0; i < count; i++) {
+    scores[i] = +prompt('scores:');
+  }
+  let maxScore = Math.max(...scores);
+  console.log(maxScore);
+</script>
+<script id="ch0105/06" type="DNR">
+  let count = +prompt('count:');
+  while (count <= 1 || count >= 100) {
+    count = +prompt('输入超越范围，请重新输入');
+  }
+  let ints = [];
+  for (let i = 0; i < count; i++) {
+    ints[i] = +prompt('int:');
+  }
+  let maxInt = Math.max(...ints);
+  let minInt = Math.min(...ints);
+  console.log(maxInt - minInt);
+</script>
+<script id="ch0105/07" type="DNR">
+  let count = +prompt('count:');
+  while (count <= 1 || count >= 100) {
+    count = +prompt('输入超越范围，请重新输入');
+  }
+  let golds = [];
+  let silvers = [];
+  let bronzes = [];
+  for (let i = 0; i < count; i++) {
+    golds[i] = +prompt('golds:');
+    silvers[i] = +prompt('silvers:');
+    bronzes[i] = +prompt('bronzes:');
+  }
+  let goldSum = golds.reduce((sum, current) => sum + current);
+  let silverSum = silvers.reduce((sum, current) => sum + current);
+  let bronzeSum = bronzes.reduce((sum, current) => sum + current);
+  let total = goldSum + silverSum + bronzeSum;
+  console.log(goldSum);
+  console.log(silverSum);
+  console.log(bronzeSum);
+  console.log(total);
+</script>
+<script id="ch0105/08" type="DNR">
+  let n = +prompt('n:');
+  let angleSum = (n - 2) * 180;
+  let angles = [];
+  for (let i = 0; i < n - 1; i++) {
+    angles[i] = +prompt('angles:');
+  }
+  let knownAngleSum = angles.reduce((sum, current) => sum + current);
+  console.log(angleSum - knownAngleSum);
+</script>
+<script id="ch0105/09" type="DNR">
+  let m = +prompt('m:');
+  let n = +prompt('n:');
+  let odds = [];
+  for (let i = m; i <= n; i++) {
+    if (i % 2 === 1) odds[i] = i;
+  }
+  let oddSum = odds.reduce((sum, current) => sum + current);
+  console.log(oddSum);
+</script>
+<script id="ch0105/10" type="DNR">
+  let m = +prompt('m:');
+  let n = +prompt('n:');
+  let odds = [];
+  for (let i = m; i <= n; i++) {
+    if (i % 17 === 0) odds[i] = i;
+  }
+  let oddSum = odds.reduce((sum, current) => sum + current);
+  console.log(oddSum);
+</script>
+<script id="ch0105/11" type="DNR">
+  let count = +prompt('count:');
+  let nums = [];
+  let num_1 = 0;
+  let num_5 = 0;
+  let num_10 = 0;
+  for (let i = 0; i < count; i++) {
+    nums[i] = +prompt('num:');
+    if (nums[i] === 1) num_1++;
+    if (nums[i] === 5) num_5++;
+    if (nums[i] === 10) num_10++;
+  }
+  console.log(num_1);
+  console.log(num_5);
+  console.log(num_10);
+</script>
+<script id="ch0105/12" type="DNR">
+  let count = +prompt('count:');
+  let number = +prompt('number:');
+  let nums = [];
+  let result = 0;
+  for (let i = 0; i < count; i++) {
+    nums[i] = +prompt('num:');
+    if (nums[i] === number) result++;
+  }
+  console.log(result);
+</script>
+<script id="ch0105/13" type="DNR">
+  let a = +prompt('a:');
+  let n = +prompt('n:');
+  console.log(a ** n);
+</script>
+<script id="ch0105/14" type="DNR">
+  let x = +prompt('x:');
+  let n = +prompt('n:');
+  let result = x;
+  for (let i = 0; i < n; i++) {
+    result += result * 0.001;
+  }
+  console.log(result.toFixed(4));
+</script>
+<script id="ch0105/15" type="DNR">
+  let R = +prompt('R:') / 100;
+  let M = +prompt('M:');
+  let Y = +prompt('Y:');
+  let result = M;
+  for (let i = 0; i < Y; i++) {
+    result += result * R;
+  }
+  console.log(Math.trunc(result));
+</script>
+<script id="ch0105/16" type="DNR">
+  let N = +prompt('N:');
+  let K = +prompt('K:') / 100;
+  let housePrice = 200;
+  let result = housePrice;
+  let years = 0;
+  for (let i = 1; i < 20; i++) {
+    if (N * i >= result) {
+      console.log(i);
+      years = i;
+      break;
+    }
+    result += result * K;
+  }
+  if (years > 20)
+    console.log('Impossible');
 
 </script>
-<script id="ch0105/02">
+<script id="ch0105/17" type="DNR">
+  function fibonacci(n) {
+    if (n === 1 || n === 2) return 1;
+    if (n > 2) {
+      return fibonacci(n - 2) + fibonacci(n - 1);
+    }
+  }
+  let n = +prompt('n:');
+  console.log(fibonacci(n));
+</script>
+<script id="ch0105/18" type="DNR">
+  let n = +prompt('n:') - 1;
+  let a = +prompt('a:');
+  let b = +prompt('b:');
+  let x = b / a;
+  let total = 0;
+  let effective = 0;
+  let y = 0;
+  for (let i = 0; i < n; i++) {
+    total = +prompt('total:');
+    effective = +prompt('effective:');
+    y = effective / total;
+    if (x - y > 0.05) {
+      console.log('worse');
+    } else if (x - y <= 0.05 && y - x <= 0.05) {
+      console.log('same');
+    } else if (y - x > 0.05) {
+      console.log('better');
+    }
+  }
+</script>
+<script id="ch0105/19" type="DNR">
+  let x = [];
+  let y = [];
+  let people = 0;
+  let n = +prompt('n:');
+
+  for (let i = 0; i < n; i++) {
+    x[i] = +prompt('x:');
+    y[i] = +prompt('y:');
+    people = +prompt('people:');
+  }
+
+  let distance = 0;
+  let time = 0;
+
+  for (let i = 0; i < n; i++) {
+    distance = (Math.sqrt(x[i] ** 2 + y[i] ** 2));
+    time = distance / 50 * 2 + people * 1.5;
+    console.log(Math.ceil(time));
+  }
+</script>
+<script id="ch0105/20" type="DNR">
+  let h = +prompt('h:');
+  let s = 0;
+  let height = h;
+  for (let i = 0; i < 9; i++) {
+    height = height / 2;
+    s += height * 2;
+  }
+  s += h;
+  console.log(s.toFixed(4));
+  console.log(height.toFixed(7));
+</script>
+<script id="ch0105/21" type="DNR">
+  let N = +prompt('N:');
+  let init = 0;
+  while (N !== 1) {
+    if (N % 2 === 1) {
+      init = N;
+      N = N * 3 + 1;
+      console.log(init + '*' + '3+1' + '=' + N);
+    } else if (N % 2 === 0) {
+      init = N;
+      N = N / 2;
+      console.log(init + '/' + '2' + '=' + N);
+    }
+  }
+  console.log('End');
+</script>
+<script id="ch0105/22" type="Todo">
 
 </script>
-<script id="ch0105/03">
-
+<script id="ch0105/23" type="Todo">
+      let m = +prompt('m:');
+      let n = +prompt('n:');
+      let sum = 0;
+      for (let i = 0; i < n; i++) {
+        sum += +prompt('quantity:');
+        if (sum > m) {
+          console.log(n - i);
+          break;
+        }
+      }
 </script>
-<script id="ch0105/04">
-
+<script id="ch0105/24" type="DNR">
+  let n = +prompt('n:');
+  let sp = 0;
+  let dp = 0;
+  let count = 0;
+  for (let i = 0; i < n; i++) {
+    sp = +prompt('systolic pressure:');
+    dp = +prompt('diastolic pressure:');
+    if (sp > 90 && sp < 140 && dp >= 60 && dp <= 90) count++;
+  }
+  console.log(count);
 </script>
-<script id="ch0105/05">
-
+<script id="ch0105/25" type="Todo">
+  let a = 0;
+  let b = 0;
+  let c = 0;
+  for (let i = 82; i < 600; i++) {
+    c = Math.trunc(i / 100);          //百位
+    b = Math.trunc(i / 10 % 10);      //十位
+    a = i % 100 - b * 10;             //个位
+    if (a + b * 7 + c * 7 ** 2 === c + b * 9 + a * 9 ** 2 && a < 7 && b < 7 && c < 7) {
+      console.log(a + b * 7 + c * 7 ** 2);
+      console.log('%d%d%d', c, b, a);
+      console.log('%d%d%d', a, b, c);
+    }
+  }
 </script>
-<script id="ch0105/06">
-
+<script id="ch0105/26" type="DNR">
+  let n = +prompt('n:');
+  let a = 0;
+  let b = 0;
+  let c = 0;
+  let d = 0;
+  let count = 0;
+  let nums = [];
+  for (let i = 0; i < n; i++) {
+    nums[i] = +prompt('num:');
+  }
+  for (let i = 0; i < n; i++) {
+    d = Math.trunc(nums[i] / 1000);                  //千位
+    c = Math.trunc(nums[i] / 100) - d * 10;          //百位
+    b = Math.trunc(nums[i] / 10 % 10);               //十位
+    a = nums[i] % 100 - b * 10;                      //个位
+    if (a - b - c - d > 0) {
+      count++;
+    }
+  }
+  console.log(count);
 </script>
-<script id="ch0105/07">
-
+<script id="ch0105/27" type="DNR">
+    let K = +prompt('K:');
+    let sum = 0;
+    for (let i = 1; i < 999; i++) {
+      sum += 1 / i;
+      if (sum > K) {
+        console.log(i);
+        break;
+      }
+    }
 </script>
-<script id="ch0105/08">
-
-</script>
-<script id="ch0105/09">
-
-</script>
-<script id="ch0105/10">
-
-</script>
-<script id="ch0105/11">
-
-</script>
-<script id="ch0105/12">
-
-</script>
-<script id="ch0105/13">
-
-</script>
-<script id="ch0105/14">
-
-</script>
-<script id="ch0105/15">
-
-</script>
-<script id="ch0105/16">
-
-</script>
-<script id="ch0105/17">
-
-</script>
-<script id="ch0105/18">
-
-</script>
-<script id="ch0105/19">
-
-</script>
-<script id="ch0105/20">
-
-</script>
-<script id="ch0105/21">
-
-</script>
-<script id="ch0105/22">
-
-</script>
-<script id="ch0105/23">
-
-</script>
-<script id="ch0105/24">
-
-</script>
-<script id="ch0105/25">
-
-</script>
-<script id="ch0105/26">
-
-</script>
-<script id="ch0105/27">
-
-</script>
-<script id="ch0105/28">
-
+<script id="ch0105/28" type="DNR">
+  let str = prompt('num:');
+  let reverse = str.split('').reverse().join('');
+  console.log(reverse);
 </script>
 <script id="ch0105/29">
-
+  let str = +prompt('num:');
+  let num = Number(str);
+  let reverse = 0;
+  if (num > 0) {
+    reverse = str.split('').reverse().join('');
+  }
+  console.log(reverse);
 </script>
 <script id="ch0105/30">
 
