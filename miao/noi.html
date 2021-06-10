@@ -576,20 +576,50 @@
   }
   console.log('End');
 </script>
-<script id="ch0105/22" type="Todo">
-
+<script id="ch0105/22" type="DNR">
+  // let budget = [290, 230, 280, 200, 300, 170, 340, 50, 90, 80, 200, 60];
+  // let budget = [290, 230, 280, 200, 300, 170, 330, 50, 90, 80, 200, 60];
+  let current = 0;
+  let num = 0;
+  let deposit = 0;
+  let i = 0;
+  for (let i = 0; i < 12; i++) {
+    budget[i] = +prompt('budget:');
+  }
+  for (; i < 12; i++) {
+    current += 300;
+    num = Math.floor((current - budget[i]) / 100);
+    if (num > 0) {
+      deposit += num * 100;
+      current = current - num * 100 - budget[i];
+    } else if (num === 0) {
+      current = current - budget[i];
+    }
+    else if (num < 0) {
+      console.log('-' + (i + 1));
+      break;
+    }
+  }
+  if (i === 12) {
+    console.log(current + deposit * 1.2);
+  }
 </script>
-<script id="ch0105/23" type="Todo">
-      let m = +prompt('m:');
-      let n = +prompt('n:');
-      let sum = 0;
-      for (let i = 0; i < n; i++) {
-        sum += +prompt('quantity:');
-        if (sum > m) {
-          console.log(n - i);
-          break;
-        }
-      }
+<script id="ch0105/23" type="DNR">
+  let m = +prompt('m:');
+  let n = +prompt('n:');
+  let sum = 0;
+  let num = [];
+  for (let i = 0; i < n; i++) {
+    num[i] = +prompt('quantity:');
+  }
+
+  for (let i = 0; i < n; i++) {
+    sum += num[i];
+    if (sum > m) {
+    console.log(i);
+    break;
+  }
+}
 </script>
 <script id="ch0105/24" type="DNR">
   let n = +prompt('n:');
@@ -696,19 +726,43 @@
     console.log('NO');
   }
 </script>
-<script id="ch0105/31" type="Todo">
-    let N = +prompt('N:');
-    let M = +prompt('M:');
-    let lights = new Array(N).fill(0);
-    for(let i = 1;i<M;i++){
-      for(let j = 0;j<n;j++){
-        if(j%)
-        lights[]
+<script id="ch0105/31" type="DNR">
+  let N = +prompt('N:');
+  let M = +prompt('M:');
+  let lights = new Array(N + 1).fill(0);
+  for (let i = 2; i <= M; i++) {
+    for (let j = 1; j <= N; j++) {
+      if (j % i === 0) {
+        if (lights[j] === 1) {
+          lights[j] = 0;
+          continue;
+        }
+        if (lights[j] === 0) {
+          lights[j] = 1;
+          continue;
+        }
       }
     }
+  }
+  for (let i = 1; i <= N; i++) {
+    if (lights[i] === 0) console.log(i);
+}
 </script>
-<script id="ch0105/32" type="Todo">
+<script id="ch0105/32" type="DNR">
   let n = +prompt('n:');
+  let p = [1];
+  let q = [2];
+  let temp_p = 0;
+  let temp_q = 0;
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += q[i - 1] / p[i - 1];
+    temp_q = q[i - 1] + p[i - 1];
+    temp_p = q[i - 1];
+    p[i] = temp_p;
+    q[i] = temp_q;
+  }
+  console.log(sum.toFixed(4));
 </script>
 <script id="ch0105/33" type="DNR">
   let n = +prompt('n:');
