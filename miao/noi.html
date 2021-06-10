@@ -656,35 +656,103 @@
   let reverse = str.split('').reverse().join('');
   console.log(reverse);
 </script>
-<script id="ch0105/29">
-  let str = +prompt('num:');
+<script id="ch0105/29" type="Todo">
+  let str = prompt('num:');
   let num = Number(str);
   let reverse = 0;
-  if (num > 0) {
-    reverse = str.split('').reverse().join('');
+  if (num === 0) {
+    console.log(reverse);
+  } else if (num > 0) {
+    reverse = str.split('').reverse();
+    for (let i = 0; i < reverse.length; i++) {
+      if (reverse[i] === '0') {
+        reverse.splice(i, 1);
+      }
+    }
+    console.log(reverse.join(''));
+  } else if (num < 0) {
+    temp = str.split('');
+    temp.splice(0, 1);
+    reverse = temp.reverse();
+    for (let i = 0; i < reverse.length; i++) {
+      if (reverse[i] === '0') {
+        reverse.splice(i, 1);
+      }
+    }
+    console.log('-' + reverse.join(''));
   }
-  console.log(reverse);
 </script>
-<script id="ch0105/30">
-
+<script id="ch0105/30" type="DNR">
+  let m = +prompt('m:');
+  let k = +prompt('k:');
+  let str = Array.from(String(m));
+  let count = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] == '3') count++;
+  }
+  if (m % 19 === 0 && count === k) {
+    console.log('YES');
+  } else {
+    console.log('NO');
+  }
 </script>
-<script id="ch0105/31">
-
+<script id="ch0105/31" type="Todo">
+    let N = +prompt('N:');
+    let M = +prompt('M:');
+    let lights = new Array(N).fill(0);
+    for(let i = 1;i<M;i++){
+      for(let j = 0;j<n;j++){
+        if(j%)
+        lights[]
+      }
+    }
 </script>
-<script id="ch0105/32">
-
+<script id="ch0105/32" type="Todo">
+  let n = +prompt('n:');
 </script>
-<script id="ch0105/33">
-
+<script id="ch0105/33" type="DNR">
+  let n = +prompt('n:');
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += (1 / i) * ((-1) ** (i - 1));
+  }
+  console.log(sum.toFixed(4));
 </script>
-<script id="ch0105/34">
-
+<script id="ch0105/34" type="Todo">
+  function factorial(n) {
+    if (n === 1) return 1;
+    if (n > 1) return factorial(n - 1) * n;
+  }
+  let n = +prompt('n:');
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += factorial(i);
+  }
+  console.log(sum);
 </script>
-<script id="ch0105/35">
-
+<script id="ch0105/35" type="DNR">
+  function factorial(n) {
+    if (n === 1) return 1;
+    if (n > 1) return factorial(n - 1) * n;
+  }
+  let n = +prompt('n:');
+  let sum = 1;
+  for (let i = 1; i <= n; i++) {
+    sum += (1 / factorial(i));
+  }
+  console.log(sum.toFixed(10));
 </script>
-<script id="ch0105/36">
-
+<script id="ch0105/36" type="DNR">
+  function power(x, n) {
+    return x ** n;
+  }
+  let x = +prompt('x:');
+  let n = +prompt('n:');
+  let sum = 1;
+  for (let i = 1; i <= n; i++) {
+    sum += power(x, i);
+  }
+  console.log(sum.toFixed(2));
 </script>
 <script id="ch0105/37">
 
@@ -692,23 +760,80 @@
 <script id="ch0105/38">
 
 </script>
-<script id="ch0105/39">
-
+<script id="ch0105/39" type="DNR">
+  function power(x, n) {
+    return x ** n;
+  }
+  let n = +prompt('n:');
+  let sum = 0;
+  let index = 0;
+  let num = [];
+  let str_i = 0;
+  for (let i = 0; i < n; i++) {
+    str_i = String(i);
+    if (i % 7 !== 0 && str_i.indexOf('7') === -1) num.push(i);
+  }
+  sum = num.reduce((sum, current) => sum + power(current, 2));
+  console.log(sum);
 </script>
-<script id="ch0105/40">
-
+<script id="ch0105/40" type="DNR">
+  let n = +prompt('n:');
+  let count = 0;
+  let str = '';
+  for (let i = 1; i <= n; i++) {
+    str = String(i);
+    for (let j = 0; j <= str.length; j++) {
+      if (str[j] === '1') count++;
+    }
+  }
+  console.log(count);
 </script>
-<script id="ch0105/41">
-
+<script id="ch0105/41" type="DNR">
+  function numberOfStr(num, str) {
+    let count = 0;
+    for (let i = 0; i <= num.length; i++) {
+      if (num[i] === str) count++;
+    }
+    return count;
+  }
+  let L = +prompt('L:');
+  let R = +prompt('R:');
+  let count = 0;
+  let num = '';
+  let str = '';
+  for (; L <= R; L++) {
+    num = String(L);
+    count += numberOfStr(num, '2');
+  }
+  console.log(count);
 </script>
-<script id="ch0105/42">
-
+<script id="ch0105/42" type="DNR">
 </script>
-<script id="ch0105/43">
-
+<script id="ch0105/43" type="DNR">
+  let n = +prompt('n:');
+  let max = 0;
+  let current = 0;
+  let prime = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+  for (let i = 0; i < prime.length; i++) {
+    current = prime[i];
+    if (n % current === 0 && current > max) max = current;
+  }
+  console.log(max);    
 </script>
-<script id="ch0105/44">
-
+<script id="ch0105/44" type="DNR">
+  let n = +prompt('n:');
+  let prime = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+  console.log(prime[n - 1]);
 </script>
-<script id="ch0105/45">
+<script id="ch0105/45" type="DNR">
+  let n = +prompt('n:');
+  let count = 0;
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    for (let j = 0; j < i; j++) {
+      count++;
+      if (count <= n) sum += i;
+    }
+  }
+  console.log(sum);
 </script>
