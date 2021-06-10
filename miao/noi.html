@@ -745,9 +745,15 @@
       }
     }
   }
+  let str = '';
   for (let i = 1; i <= N; i++) {
-    if (lights[i] === 0) console.log(i);
+  if (lights[i] === 0 && i !== N - 1) {
+    str = str + i + ',';
+  } else if (i == N - 1) {
+    str = str + i;
 }
+  }
+  console.log(str);
 </script>
 <script id="ch0105/32" type="DNR">
   let n = +prompt('n:');
