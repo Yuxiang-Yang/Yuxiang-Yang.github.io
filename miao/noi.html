@@ -808,7 +808,19 @@
   }
   console.log(sum.toFixed(2));
 </script>
-<script id="ch0105/37">
+<script id="ch0105/37" type="Todo">
+  let m = +prompt('M:');
+  let n = +prompt('N:');
+  let x = +prompt('X:');
+  while (x > 0) {
+    let t = Math.trunc(m / n); //需要m/n个元素
+    if (m % n) t++;
+    if (x < t) break;
+    x -= t; //x-=m/n
+    t = Math.trunc(m / n);
+    n += t; //n+=m/n
+  }
+  console.log(n);
 
 </script>
 <script id="ch0105/38">
