@@ -65,7 +65,7 @@
     }
   }
 </script>
-<script id="weekday" type=DNR>
+<script id="weekday" type="DNR">
   let year = +prompt();
   let month = +prompt();
   console.log(weekday(year, month));
@@ -105,10 +105,7 @@
     return sum;
   }
   function isLeapYear(n) {
-    if (n % 4 === 0 && n % 100 !== 0) {
-      return true
-    }
-    return false;
+    return n % 400 === 0 || n % 4 === 0 && n % 100 !== 0;
   }
   function isLeapMonth(n) {
     if (n === 1 || n === 3 || n === 5 || n === 7 || n === 8 || n === 10 || n === 12) {
@@ -1102,7 +1099,7 @@
   console.log(n);
 
 </script>
-<script id="ch0105/38">
+<script id="ch0105/38" type="DNR">
   let n = +prompt('N:');
   if (n !== 0) {
     let num = [];
@@ -1171,23 +1168,26 @@
 <script id="ch0105/42" type="DNR">
   let w = Number(prompt());
   let h = Number(prompt());
-            let char = prompt();
+    let char = prompt();
   let fill = Number(prompt());
   let result = '';
-            let count = 0;
+    let count = 0;
 
-  for(let y = 1; y <= h; y++){
+    for (let y = 1; y <= h; y++) {
     count = 0;
     for (let x = 1; x <= w; x++) {
       count++;
-      if(fill){
-        if (count === w) result += '\n';
-        result += char;
-      } else{
-        if (x === 1 || y === 1 || x === w || y === h) {
+      if (fill) {
+        if (count === w) {
+          result += char + '\n';
+        } else {
           result += char;
-          if (count === w) result += '\n';
-        } else{
+    }
+  } else {
+    if (x === 1 || y === 1 || x === w || y === h) {
+      result += char;
+      if (count === w) result += '\n';
+        } else {
           result += ' ';
         }
       }
