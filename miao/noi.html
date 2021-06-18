@@ -1,6 +1,6 @@
 <script id="narcissistic" type="DNR">
   let n = +prompt('');
-  console.log(narcissistic(n));
+    console.log(isNarcissistic(n));
 
   function isNarcissistic(n) {
     let sum = 0;
@@ -52,7 +52,7 @@
   function isPalindrome(n) {
     let temp = n;
     let reverse = '';
-    if(x<0) return false;
+    if (n < 0) return false;
     do {
       let digit = temp % 10;
       temp = (temp - digit) / 10;
@@ -160,6 +160,7 @@
   console.log(isPrime(n));
 
   function isPrime(n) {
+    if (n === 1) return 'NO';
     for (let i = 2; i <= Math.sqrt(n); i++) {
       if (n % i === 0) {
         return 'NO';
