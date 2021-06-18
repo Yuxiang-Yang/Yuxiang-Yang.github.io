@@ -215,7 +215,7 @@
     return a * b / greatestCommonDivisor(a, b)  //最小公倍数等于两数之积除以其最大公约数
   }
 </script>
-<script id="sqrt">
+<script id="sqrt" type="DNR">
   let x = +prompt('');
   console.log(sqrt(x));
   function sqrt(x) {
@@ -909,10 +909,10 @@
     //c = Math.trunc(nums[i] / 100) - d * 10;          //百位
     //b = Math.trunc(nums[i] / 10 % 10);               //十位
     //a = nums[i] % 100 - b * 10;                      //个位
-    let a = num % 10;                                  //个位
-    let b = (num - a) / 10 % 10;                       //十位
-    let c = (num - a - b * 10) / 100 % 10;             //百位
-    let d = (num - a - b * 10 - c * 100) / 1000 % 10;  //千位
+    let a = nums[i] % 10;                                  //个位
+    let b = (nums[i] - a) / 10 % 10;                       //十位
+    let c = (nums[i] - a - b * 10) / 100 % 10;             //百位
+    let d = (nums[i] - a - b * 10 - c * 100) / 1000 % 10;  //千位
     if (a - b - c - d > 0) {
       count++;
     }
@@ -980,48 +980,52 @@
   let M = +prompt('M:');
   let lights = new Array(N + 1).fill(0);
   for (let i = 2; i <= M; i++) {
-    for (let j = 1; j <= N && j >= i; j++) {
+    for (let j = 1; j <= N + 1; j++) {
       if (j % i === 0) {
-        if (lights[j] === 1) {
-          lights[j] = 0;
-          continue;
-        }
         if (lights[j] === 0) {
           lights[j] = 1;
+          continue;
+        }
+        if (lights[j] === 1) {
+          lights[j] = 0;
           continue;
         }
       }
     }
   }
   let str = '';
+        let count = 0;
   for (let i = 1; i <= N; i++) {
-  if (lights[i] === 0 && i !== N - 1) {
-    str = str + i + ',';
-  } else if (i == N - 1) {
-    str = str + i;
-}
+    if (lights[i] === 0) {
+      count++;
+      if (count === 1) {
+        str = str + i;
+      } else {
+        str = str + ',' + i;
+      }
+    }
   }
   console.log(str);
+  // let n = Number(prompt());
+  // let m = Number(prompt());
+  // let loggedLight = false;
 
-  let m = Number(prompt());
-  let loggedLight = false;
+  // for(let light = 1; light <= n; light++){
+  //   let state = true;
+  //   for(let man = 1; man <= m && man <= light; man++){
+  //     if(light % man === 0){
+  //       state =!state;
+  //     }
+  //   }
 
-  for(let light = 1; light <= n; light++){
-    let state = true;
-    for(let man = 1; man <= m && man <= light; man++){
-      if(light % man === 0){
-        state =!state;
-      }
-    }
-
-    if(state === false){
-      if(loggedLight){
-        console.log(',');
-      }
-      console.log(light);
-      loggedLight = true;
-    }
-  }
+  //   if(state === false){
+  //     if(loggedLight){
+  //       console.log(',');
+  //     }
+  //     console.log(light);
+  //     loggedLight = true;
+  //   }
+  // }
 </script>
 <script id="ch0105/32" type="DNR">
   let n = +prompt('n:');
@@ -1098,7 +1102,7 @@
   console.log(n);
 
 </script>
-<script id="ch0105/38" type="DNR">
+<script id="ch0105/38">
   let n = +prompt('N:');
   if (n !== 0) {
     let num = [];
@@ -1167,19 +1171,24 @@
 <script id="ch0105/42" type="DNR">
   let w = Number(prompt());
   let h = Number(prompt());
-  let char = Number(prompt());
+            let char = prompt();
   let fill = Number(prompt());
   let result = '';
+            let count = 0;
 
   for(let y = 1; y <= h; y++){
-    for(let x = 1; x < =x; x++){
+    count = 0;
+    for (let x = 1; x <= w; x++) {
+      count++;
       if(fill){
+        if (count === w) result += '\n';
         result += char;
       } else{
-        if(x === 1 || y === 1 || x == w || y == h){
+        if (x === 1 || y === 1 || x === w || y === h) {
           result += char;
+          if (count === w) result += '\n';
         } else{
-          result += '';
+          result += ' ';
         }
       }
     }
