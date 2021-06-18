@@ -1,3 +1,233 @@
+<script id="narcissistic" type="DNR">
+  let n = +prompt('');
+  console.log(narcissistic(n));
+
+  function isNarcissistic(n) {
+    let sum = 0;
+    let temp = n;
+    do {
+      let digit = temp % 10;
+      temp = (temp - digit) / 10;
+      sum += digit ** 3;
+    } while (temp)
+    if (n === sum) {
+      return 'YES';
+    } else {
+      return 'NO';
+    }
+  }
+
+</script>
+<script id="narcissistics" type="DNR">
+  narcissistics(10000);
+  function isNarcissistic(n) {
+    let sum = 0;
+    let temp = n;
+    do {
+      let digit = temp % 10;
+      temp = (temp - digit) / 10;
+      sum += digit ** 3;
+    } while (temp)
+    if (n === sum) {
+      return 'YES';
+    } else {
+      return 'NO';
+    }
+  }
+
+  function narcissistics(n) {
+    let sum = 0;
+    let temp = 0;
+    for (let i = 100; i <= n; i++) {
+      if (isNarcissistic(i) === 'YES') {
+        console.log(i);
+      }
+    }
+  }
+</script>
+<script id="palindrom" type="DNR">
+  let n = +prompt('');
+  console.log(isPalindrome(n));
+
+  function isPalindrome(n) {
+    let temp = n;
+    let reverse = '';
+    if(x<0) return false;
+    do {
+      let digit = temp % 10;
+      temp = (temp - digit) / 10;
+      reverse = reverse + digit;
+    } while (temp)
+    if (Number(reverse) === n) {
+      return 'YES';
+    } else {
+      return 'NO';
+    }
+  }
+</script>
+<script id="weekday" type=DNR>
+  let year = +prompt();
+  let month = +prompt();
+  console.log(weekday(year, month));
+
+  function weekday(year, month) {
+    let day = 0;
+    let sum = 0;
+    if (year > 1) {
+      for (let y = 1; y < year; y++) {
+        if (isLeapYear(year)) {
+          sum += 366;
+        } else {
+          sum += 365;
+        }
+      }
+      sum += daySum(year, month);
+    } else {
+      sum = daySum(year, month);
+    }
+    return sum % 7 + 1;
+  }
+  function daySum(year, month) {
+    let sum = 0;
+    for (let m = 1; m < month; m++) {
+      if (m === 2) {
+        if (isLeapYear(year)) {
+          sum += 29;
+        } else {
+          sum += 28;
+        }
+      } else if (isLeapMonth(m)) {
+        sum += 31;
+      } else {
+        sum += 30;
+      }
+    }
+    return sum;
+  }
+  function isLeapYear(n) {
+    if (n % 4 === 0 && n % 100 !== 0) {
+      return true
+    }
+    return false;
+  }
+  function isLeapMonth(n) {
+    if (n === 1 || n === 3 || n === 5 || n === 7 || n === 8 || n === 10 || n === 12) {
+      return true;
+    }
+    return false;
+  }
+</script>
+<script id="complete-number" type="DNR">
+  let n = +prompt('');
+  console.log(isCompleteNumber(n));
+
+  function isCompleteNumber(n) {
+    let sum = 0;
+    for (let i = 1; i < n; i++) {
+      if (n % i === 0) {
+        sum += i;
+      }
+    }
+    return (sum === n) ? 'YES' : "NO";
+  }
+</script>
+<script id="complete-numbers" type="DNR">
+  completeNumbers(1000);
+
+  function completeNumbers(n) {
+    for (let i = 1; i <= n; i++) {
+      if (isCompleteNumber(i) === 'YES') {
+        console.log(i);
+      }
+    }
+  }
+  function isCompleteNumber(n) {
+    let sum = 0;
+    for (let i = 1; i < n; i++) {
+      if (n % i === 0) {
+        sum += i;
+      }
+    }
+    if (sum === n) {
+      return 'YES';
+    } else {
+      return 'NO';
+    }
+  }
+</script>
+<script id="prime" type="DNR">
+  let n = +prompt('');
+  console.log(isPrime(n));
+
+  function isPrime(n) {
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+      if (n % i === 0) {
+        return 'NO';
+      }
+    }
+    return 'YES';
+  }
+</script>
+<script id="primes" type="DNR">
+  primes(1000);
+
+  function primes(n) {
+    for (let i = 2; i < n; i++) {
+      if (isPrime(i) === 'YES') {
+        console.log(i);
+      }
+    }
+  }
+  function isPrime(n) {
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+      if (n % i === 0) {
+        return 'NO';
+      }
+    }
+    return 'YES';
+  }
+</script>
+<script id="lcf&lcm" type="DNR">
+  let a = +prompt('');
+  let b = +prompt('');
+  console.log(greatestCommonDivisor(a, b));
+  console.log(leastCommonMultiple(a, b));
+
+  //使用递归
+  // function greatestCommonDivisor(a, b) {
+  //   if (a % b === 0) {
+  //     return b;
+  //   }
+  //   return greatestCommonDivisor(b, a % b);
+  // }
+  //使用循环
+  function greatestCommonDivisor(a, b) {
+    let temp = 0;
+    while (b) { //使用辗转相除法
+      temp = b;
+      b = a % b;
+      a = temp;
+    }
+    return a;
+  }
+  function leastCommonMultiple(n) {
+    return a * b / greatestCommonDivisor(a, b)  //最小公倍数等于两数之积除以其最大公约数
+  }
+</script>
+<script id="sqrt">
+  let x = +prompt('');
+  console.log(sqrt(x));
+  function sqrt(x) {
+    if (x === 0) return 0;
+    let last = 0;
+    let res = 1;
+    while (res != last) {
+      last = res;
+      res = (res + x / res) / 2;
+    }
+    return res;
+  }
+</script>
 <script id="ch0103/01" type='DNR'>
   let A = +prompt('A:');
   let B = +prompt('B:');
@@ -497,6 +727,7 @@
 
 </script>
 <script id="ch0105/17" type="DNR">
+  //Approach1: 递归
   function fibonacci(n) {
     if (n === 1 || n === 2) return 1;
     if (n > 2) {
@@ -505,6 +736,18 @@
   }
   let n = +prompt('n:');
   console.log(fibonacci(n));
+
+  //Approach2: 循环
+  /*let n = +prompt('n:');
+  let a = 0;
+  let b = 0;
+
+  for(let i = 1; i < k; i++){
+    c = a + b;
+    a = b;
+    b = c;
+  }
+  console.log(a);*/
 </script>
 <script id="ch0105/18" type="DNR">
   let n = +prompt('n:') - 1;
@@ -661,10 +904,14 @@
     nums[i] = +prompt('num:');
   }
   for (let i = 0; i < n; i++) {
-    d = Math.trunc(nums[i] / 1000);                  //千位
-    c = Math.trunc(nums[i] / 100) - d * 10;          //百位
-    b = Math.trunc(nums[i] / 10 % 10);               //十位
-    a = nums[i] % 100 - b * 10;                      //个位
+    //d = Math.trunc(nums[i] / 1000);                  //千位
+    //c = Math.trunc(nums[i] / 100) - d * 10;          //百位
+    //b = Math.trunc(nums[i] / 10 % 10);               //十位
+    //a = nums[i] % 100 - b * 10;                      //个位
+    let a = num % 10;                                  //个位
+    let b = (num - a) / 10 % 10;                       //十位
+    let c = (num - a - b * 10) / 100 % 10;             //百位
+    let d = (num - a - b * 10 - c * 100) / 1000 % 10;  //千位
     if (a - b - c - d > 0) {
       count++;
     }
@@ -718,11 +965,11 @@
   let k = +prompt('k:');
   let str = Array.from(String(m));
   let count = 0;
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] == '3') count++;
-  }
-  if (m % 19 === 0 && count === k) {
-    console.log('YES');
+  if (m % 19 === 0) {
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] == '3') count++;
+    }
+    if (count === k) console.log('YES')
   } else {
     console.log('NO');
   }
@@ -732,7 +979,7 @@
   let M = +prompt('M:');
   let lights = new Array(N + 1).fill(0);
   for (let i = 2; i <= M; i++) {
-    for (let j = 1; j <= N; j++) {
+    for (let j = 1; j <= N && j >= i; j++) {
       if (j % i === 0) {
         if (lights[j] === 1) {
           lights[j] = 0;
@@ -754,6 +1001,26 @@
 }
   }
   console.log(str);
+
+  let m = Number(prompt());
+  let loggedLight = false;
+
+  for(let light = 1; light <= n; light++){
+    let state = true;
+    for(let man = 1; man <= m && man <= light; man++){
+      if(light % man === 0){
+        state =!state;
+      }
+    }
+
+    if(state === false){
+      if(loggedLight){
+        console.log(',');
+      }
+      console.log(light);
+      loggedLight = true;
+    }
+  }
 </script>
 <script id="ch0105/32" type="DNR">
   let n = +prompt('n:');
@@ -897,6 +1164,27 @@
   console.log(count);
 </script>
 <script id="ch0105/42" type="DNR">
+  let w = Number(prompt());
+  let h = Number(prompt());
+  let char = Number(prompt());
+  let fill = Number(prompt());
+  let result = '';
+
+  for(let y = 1; y <= h; y++){
+    for(let x = 1; x < =x; x++){
+      if(fill){
+        result += char;
+      } else{
+        if(x === 1 || y === 1 || x == w || y == h){
+          result += char;
+        } else{
+          result += '';
+        }
+      }
+    }
+  }
+
+  console.log(result);
 </script>
 <script id="ch0105/43" type="DNR">
   let n = +prompt('n:');
@@ -907,7 +1195,14 @@
     current = prime[i];
     if (n % current === 0 && current > max) max = current;
   }
-  console.log(max);    
+  console.log(max);   
+  //let n = +prompt('n:');
+  //for(let i = 2; ; i++){
+  //  if(n % i === 0){
+  //    console.log(p / i);
+  //    break;
+  //  }
+  //} 
 </script>
 <script id="ch0105/44" type="DNR">
   let n = +prompt('n:');
