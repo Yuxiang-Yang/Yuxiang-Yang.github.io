@@ -1,4 +1,4 @@
-var yuxiang_yang = function () {
+var yuxiang_yang = (function () {
   function chunk(array, size = 2) {}
   function compact() {}
   function concat() {}
@@ -505,4 +505,4 @@ var yuxiang_yang = function () {
     parseJson,
     stringifyJson,
   }
-}
+})()
