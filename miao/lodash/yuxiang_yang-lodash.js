@@ -1,6 +1,22 @@
 var yuxiang_yang = (function () {
-  function chunk(array, size = 2) {}
-  function compact() {}
+  //返回首个提供的参数
+  function identity(value) {
+    return value
+  }
+  //数组分块
+  function chunk(array, size = 1) {
+    let result = []
+    let chunks = Math.trunc(array.length / size)
+    for (var i = 0; i < size * chunks; i += size) {
+      result.push(array.slice(i, i + size))
+    }
+    if (i < array.length) result.push(array.slice(i))
+    return result
+  }
+  //去除数组中的false, null, 0, "", undefined,NaN
+  function compact(array) {
+    return array.filter(item => item != false && item !== undefined && !Number.isNaN(item))
+  }
   function concat() {}
   function difference() {}
   function differenceBy() {}
@@ -12,9 +28,34 @@ var yuxiang_yang = (function () {
   function fill() {}
   function findIndex() {}
   function findLastIndex() {}
-  function flatten() {}
-  function flattenDeep() {}
-  function flattenDepth() {}
+  //减少一层 array 的嵌套层级
+  function flatten(array) {
+    return flattenDepth(array, 1)
+  }
+  //减少 array 的嵌套层级至零
+  function flattenDeep(array) {
+    return flattenDepth(array, Infinity)
+  }
+  //根据 depth 递归减少 array 的嵌套层级
+  function flattenDepth(array, depth = 1) {
+    if (depth === 0) {
+      return array.slice()
+    }
+    let result = []
+    for (let i = 0; i < array.length; i++) {
+      let item = array[i]
+      if (Array.isArray(item)) {
+        item = flattenDepth(item, depth - 1)
+        for (let j = 0; j < item.length; j++) {
+          result.push(item[j])
+        }
+      } else {
+        result.push(item)
+      }
+    }
+    return result
+  }
+
   function fromPairs() {}
   function head() {}
   function indexOf() {}
@@ -48,8 +89,28 @@ var yuxiang_yang = (function () {
   function union() {}
   function unionBy() {}
   function unionWith() {}
-  function uniq() {}
-  function uniqBy() {}
+  //数组去重
+  function uniq(array) {
+    let result = []
+    for (let i = 0; i < array.length; i++) {
+      if (!result.includes(array[i])) {
+        result.push(array[i])
+      }
+    }
+    return result
+  }
+  //Todo
+  function uniqBy(array, iteratee = identity) {
+    let result = []
+    let temp = []
+    for (let i = 0; i < array.length; i++) {
+      if (!temp.includes(iteratee(array[i]))) {
+        temp.push(iteratee(array[i]))
+        result.push(array[i])
+      }
+    }
+    return result
+  }
   function uniqWith() {}
   function unzip() {}
   function unzipWith() {}
@@ -69,9 +130,9 @@ var yuxiang_yang = (function () {
   function flatMap() {}
   function flatMapDeep() {}
   function flatMapDepth() {}
-  function forEach() {}
+  function forEach(collection, iteratee = identity) {}
   function forEachRight() {}
-  function groupBy() {}
+  function groupBy(collection, iteratee = identity) {}
   function includes() {}
   function invokeMap() {}
   function keyBy() {}
