@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>moving-box</title>
+  <style>
+    .box1,
+    .box2 {
+      width: 100px;
+      height: 100px;
+    }
+
+    .box1 {
+      position: absolute;
+      background-color: pink;
+    }
+
+    .box2 {
+      position: absolute;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1" style="top: 50px; left: 50px;"></div>
+  <div class="box2" style="top: 50px; left: 200px;"></div>
+  <script>
+    'use strict'
+    let box1 = document.querySelector('div.box1')
+    let box2 = document.querySelector('div.box2')
+    let statusL = {
+      vx: 0,
+      vy: 0,
+      wPress: false,
+      aPress: false,
+      sPress: false,
+      dPress: false,
+    }
+    let statusR = {
+      vx: 0,
+      vy: 0,
+      upPress: false,
+      downPress: false,
+      leftPress: false,
+      rightPress: false,
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key == 'ArrowUp') {
+        statusR.vy = -1
+        statusR.upPress = true
+      }
+      if (e.key == 'ArrowDown') {
+        statusR.vy = 1
+        statusR.downPress = true
+      }
+      if (e.key == 'ArrowLeft') {
+        statusR.vx = -1
+        statusR.leftPress = true
+      }
+      if (e.key == 'ArrowRight') {
+        statusR.vx = 1
+        statusR.rightPress = true
+      }
+      if (e.key == 'w') {
+        statusL.vy = -1
+        statusL.wPress = true
+      }
+      if (e.key == 's') {
+        statusL.vy = 1
+        statusL.sPress = true
+      }
+      if (e.key == 'a') {
+        statusL.vx = -1
+        statusL.aPress = true
+      }
+      if (e.key == 'd') {
+        statusL.vx = 1
+        statusL.dPress = true
+      }
+    })
+    document.addEventListener('keyup', function (e) {
+      if (e.key == 'ArrowUp') {
+        statusR.upPress = false
+        if (statusR.downPress) {
+          statusR.vy = 1
+        } else {
+          statusR.vy = 0
+        }
+      }
+      if (e.key == 'ArrowDown') {
+        statusR.downPress = false
+        if (statusR.upPress) {
+          statusR.vy = -1
+        } else {
+          statusR.vy = 0
+        }
+      }
+      if (e.key == 'ArrowLeft') {
+        statusR.leftPress = false
+        if (statusR.rightPress) {
+          statusR.vx = 1
+        } else {
+          statusR.vx = 0
+        }
+      }
+      if (e.key == 'ArrowRight') {
+        statusR.rightPress = false
+        if (statusR.leftPress) {
+          statusR.vx = -1
+        } else {
+          statusR.vx = 0
+        }
+      }
+      if (e.key == 'w') {
+        statusL.wPress = false
+        if (statusL.sPress) {
+          statusL.vy = 1
+        } else {
+          statusL.vy = 0
+        }
+      }
+      if (e.key == 's') {
+        statusL.sPress = false
+        if (statusL.wPress) {
+          statusL.vy = -1
+        } else {
+          statusL.vy = 0
+        }
+      }
+      if (e.key == 'a') {
+        statusL.aPress = false
+        if (statusL.dPress) {
+          statusL.vx = 1
+        } else {
+          statusL.vx = 0
+        }
+      }
+      if (e.key == 'd') {
+        statusL.dPress = false
+        if (statusL.aPress) {
+          statusL.vx = -1
+        } else {
+          statusL.vx = 0
+        }
+      }
+
+    })
+    let lastTime = 0
+    requestAnimationFrame(function move(time) {
+      let timeDiff = time - lastTime
+      lastTime = time
+      // if (statusL.wPress && statusL.aPress || statusL.wPress && statusL.dPress || statusL.sPress && statusL.aPress || statusL.sPress && statusL.dPress) {
+      //   statusL.vx *= Math.SQRT1_2
+      //   statusL.vy *= Math.SQRT1_2
+      // }
+
+      // if (statusR.upPress && statusR.leftPress || statusR.upPress && statusR.rightPress || statusR.downPress && statusR.leftPress || statusR.downPress && statusR.rightPress) {
+      //   statusR.vx *= Math.SQRT1_2
+      //   statusR.vy *= Math.SQRT1_2
+      // }
+
+      box1.style.left = parseFloat(box1.style.left) + statusL.vx * timeDiff * 0.2 + 'px'
+      box1.style.top = parseFloat(box1.style.top) + statusL.vy * timeDiff * 0.2 + 'px'
+      box2.style.left = parseFloat(box2.style.left) + statusR.vx * timeDiff * 0.2 + 'px'
+      box2.style.top = parseFloat(box2.style.top) + statusR.vy * timeDiff * 0.2 + 'px'
+      requestAnimationFrame(move)
+    })
+
+  </script>
+</body>
+
+</html>
