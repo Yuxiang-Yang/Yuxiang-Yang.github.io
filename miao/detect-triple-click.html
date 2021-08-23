@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detect triple click</title>
+  <style>
+    .click-event {
+      width: 100%;
+      height: 300px;
+      font-size: 64px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="click-event"></div>
+
+  <script>
+    //ver1
+    // let last1 = 0
+    // let last2 = 0
+    // let last3 = 0
+    // window.addEventListener('click', e => {
+    //   console.log('click');
+    //   let time = Date.now()
+    //   if (time - last2 < 400 && last2 - last1 > 400) {
+    //     console.log('triple click');
+    //   }
+    //   last1 = last2
+    //   last2 = last3
+    //   last3 = time
+    // })
+
+    //ver2
+    // let last = 0
+    // let c = 1
+    // let id
+    // window.addEventListener('click', e => {
+    //   console.log('click');
+    //   let time = Date.now()
+    //   clearTimeout(id)
+    //   id = setTimeout(() => {
+    //     c = 1
+    //   }, 200)
+
+    //   if (time - last < 200) {
+    //     c++
+    //   }
+    //   if (c == 2) {
+    //     console.log('double click');
+    //   }
+    //   if (c == 3) {
+    //     console.log('triple click');
+    //   }
+    //   if (c == 4) {
+    //     console.log('quadra click');
+    //   }
+    //   if (c == 5) {
+    //     console.log('penta click');
+    //   }
+    //   if (c == 6) {
+    //     console.log('hexa click');
+    //   }
+    //   last = time
+    // })
+
+    //ver3
+    // window.addEventListener('click', e => {
+    //   console.log(e.detail, e);
+    // })
+
+    let div = document.querySelector('.click-event')
+    window.addEventListener('click', function (e) {
+      div.textContent = e.detail
+    })
+  </script>
+</body>
+
+</html>
