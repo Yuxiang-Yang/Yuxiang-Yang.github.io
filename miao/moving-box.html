@@ -48,7 +48,12 @@
       leftPress: false,
       rightPress: false,
     }
-
+    window.addEventListener('blur', function () {
+      statusL.vx = 0
+      statusL.vy = 0
+      statusR.vx = 0
+      statusR.vy = 0
+    })
     document.addEventListener('keydown', function (e) {
       if (e.key == 'ArrowUp') {
         statusR.vy = -1
@@ -170,7 +175,6 @@
       box2.style.top = parseFloat(box2.style.top) + statusR.vy * timeDiff * 0.2 + 'px'
       requestAnimationFrame(move)
     })
-
   </script>
 </body>
 
