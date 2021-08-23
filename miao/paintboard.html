@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paint board</title>
+  <style>
+    svg {
+      border: 1px solid black;
+    }
+
+    .thickness {
+      display: inline-block;
+      /* border: 1px solid black; */
+      width: 30px;
+      height: 14px;
+      line-height: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1520px" height="600px"
+    version="1.1" viewbox="0 0 1520 600"></svg>
+  <button onclick="shape='line'">乙</button><button onclick="shape='ellipse'">⚪</button>
+  <input type="color" id="colorInput">
+  <input type="range" class="thicknessInput" value="2" min="1" max="20"><span class="thickness">2px</span>
+  <button class="clear">清空</button>
+  <button onclick="save()">保存</button>
+  <script>
+    let drawAndNoSave = false  //是否已经保存
+    let svg = document.querySelector('svg')
+    let shape = 'line'
+    // let lastPos = null
+    // let strokes = 0
+
+    svg.addEventListener('mousedown', function (e) {
+      // strokes++
+      drawAndNoSave = true
+      if (shape == 'line') {
+        let pos = mousePos(svg)
+        let polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline')
+
+        polyline.setAttribute('stroke', colorInput.value)
+        polyline.setAttribute('fill', 'none')
+        polyline.setAttribute('stroke-width', thicknessInput.value)
+        polyline.setAttribute('stroke-linecap', 'round')  //线条边缘变成圆角
+        polyline.setAttribute('stroke-linejoin', 'round')  //线条连接处变成圆角
+
+        svg.append(polyline)
+        let points = `${pos.x} ${pos.y} `
+        polyline.setAttribute('points', points)
+
+        function drawDot(e) {
+          let pos = mousePos(svg)
+          points += `${pos.x} ${pos.y} `
+          polyline.setAttribute('points', points)
+          // let line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
+          // if (lastPos == null) {
+          //   line.setAttribute('x1', pos.x)
+          //   line.setAttribute('y1', pos.y)
+          // } else {
+          //   line.setAttribute('x1', lastPos.x)
+          //   line.setAttribute('y1', lastPos.y)
+          // }
+          // // line.setAttribute('data-strokes', strokes)
+          // line.setAttribute('x2', pos.x)
+          // line.setAttribute('y2', pos.y)
+          // line.setAttribute('stroke', colorInput.value)
+          // line.setAttribute('stroke-width', thicknessInput.value)
+          // line.setAttribute('stroke-linecap', 'round')  //线条边缘变成圆角
+          // line.setAttribute('stroke-linejoin', 'round')  //线条连接处变成圆角
+          // lastPos = pos
+          // g.append(line)
+        }
+        //鼠标移动时，画点
+        svg.addEventListener('mousemove', drawDot)
+        //鼠标按键抬起时，清除事件
+        svg.addEventListener('mouseup', function once() {
+          lastPos = null
+          svg.removeEventListener('mouseup', once)
+          svg.removeEventListener('mousemove', drawDot)
+        })
+      }
+      if (shape == 'ellipse') {
+        let ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse')
+        svg.append(ellipse)
+        ellipse.setAttribute('stroke', colorInput.value)
+        ellipse.setAttribute('fill', 'none')
+        ellipse.setAttribute('stroke-width', thicknessInput.value)
+
+        let startPos = mousePos(svg)
+        function drawEllipse(e) {
+          let currPos = mousePos(svg)
+          let cx = (startPos.x + currPos.x) / 2
+          let cy = (startPos.y + currPos.y) / 2
+          ellipse.setAttribute('cx', cx)
+          ellipse.setAttribute('cy', cy)
+          let rx = Math.abs(startPos.x - currPos.x) / 2
+          let ry = Math.abs(startPos.y - currPos.y) / 2
+          ellipse.setAttribute('rx', rx)
+          ellipse.setAttribute('ry', ry)
+        }
+        svg.addEventListener('mousemove', drawEllipse)
+        svg.addEventListener('mouseup', function once() {
+          lastPos = null
+          svg.removeEventListener('mouseup', once)
+          svg.removeEventListener('mousemove', drawEllipse)
+        })
+      }
+    })
+    //撤销功能 ver1: 一笔的line使用一个类名
+    // document.addEventListener('keydown', function (e) {
+    //   if (svg.lastChild && e.ctrlKey && e.key == 'z') {
+    //     let strokes = svg.lastElementChild.dataset.strokes
+    //     while (svg.lastElementChild && svg.lastElementChild.dataset.strokes == strokes) {
+    //       svg.removeChild(svg.lastElementChild)
+    //     }
+    //   }
+    // })
+    //撤销功能 ver2: 一笔放在同一个g标签内
+    document.addEventListener('keydown', function (e) {
+      if (svg.lastChild && e.ctrlKey && e.key == 'z') {
+        svg.removeChild(svg.lastElementChild)
+      }
+    })
+    //画线
+
+    //画圆
+
+    //使用input[range]改变笔画粗细
+    let thickness = document.querySelector('.thickness')
+    let thicknessInput = document.querySelector('.thicknessInput')
+    thicknessInput.addEventListener('input', function (e) {
+      thickness.textContent = thicknessInput.value + 'px'
+    })
+    //清空功能
+    let clear = document.querySelector('.clear')
+    clear.addEventListener('click', function () {
+      while (svg.lastChild)
+        svg.removeChild(svg.lastChild)
+    })
+    //保存功能
+    function save() {
+      drawAndNoSave = false
+      let svgSource = svg.outerHTML
+      let blob = new Blob(['<?xml version="1.0" encoding="utf-8"?>', svgSource], { type: 'image/svg+xml' })
+      let url = URL.createObjectURL(blob)
+      let anchor = document.createElement('a')
+      anchor.href = url
+      anchor.download = 'xxx.svg'
+      anchor.click()
+    }
+    //提示保存功能
+    window.addEventListener('beforeunload', e => {
+      if (drawAndNoSave) {
+        return e.returnValue = '还未保存，是否退出？'
+      }
+    })
+    //计算鼠标坐标和元素坐标的距离
+    function mousePos(node) {
+      let box = node.getBoundingClientRect()
+
+      return {
+        x: window.event.clientX - box.x,
+        y: window.event.clientY - box.y,
+      }
+    }
+  </script>
+</body>
+
+</html>
