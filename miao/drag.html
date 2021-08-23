@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag</title>
+  <style>
+    div[class^='box'] {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      z-index: 0;
+    }
+
+    .draggable {
+      /*禁止选中文字 */
+      user-select: none;
+    }
+
+    .box1 {
+      background-color: rgb(243, 234, 230);
+    }
+
+    .box2 {
+      background-color: rgb(183, 197, 181);
+    }
+
+    .box3 {
+      background-color: rgb(193, 202, 220);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1 draggable" style="top:0; left:0;"></div>
+  <div class="box2 draggable" style="top:30px; left:30px;"></div>
+  <div class="box3 draggable" style="top:60px; left:60px;"></div>
+
+  <script>
+    window.addEventListener("mousedown", function (e) {
+      //如果是具有draggable属性的元素，才继续
+      if (!e.target.classList.contains('draggable')) {
+        return
+      }
+      //点击box时将其置于最上层
+      e.target.classList.add('active')
+      e.target.style.zIndex = 1
+      let draggable = document.querySelectorAll('.draggable')
+      for (box of draggable) {
+        if (!box.classList.contains('active')) {
+          box.style.zIndex = 0
+        }
+      }
+      //鼠标初始位置
+      let startX = e.clientX
+      let startY = e.clientY
+      //元素初始位置
+      let elStartX = parseFloat(e.target.style.left)
+      let elStartY = parseFloat(e.target.style.top)
+
+      window.addEventListener("mousemove", function move(event) {
+        //鼠标按键抬起时，清除事件
+        if (event.which == 0 || event.buttons == 0) {
+          window.removeEventListener("mousemove", move)
+          e.target.classList.remove('active')  //鼠标移开当前元素，解除active状态
+          return
+        }
+        //鼠标当前位置
+        let curX = event.clientX
+        let curY = event.clientY
+        //鼠标偏移量
+        let dx = curX - startX
+        let dy = curY - startY
+        // startX = curX
+        // startY = curY
+        //元素偏移量
+        let left = elStartX + dx
+        let top = elStartY + dy
+        //box不出窗口，同时靠近边缘有磁吸效果
+        if (left < 20) {
+          left = 0
+        }
+        if (top < 20) {
+          top = 0
+        }
+        if (left > window.innerWidth - e.target.offsetWidth - 20) {
+          left = window.innerWidth - e.target.offsetWidth
+        }
+        if (top > window.innerHeight - e.target.offsetHeight - 20) {
+          top = window.innerHeight - e.target.offsetHeight
+        }
+        //设置元素位置
+        e.target.style.left = left + 'px'
+        e.target.style.top = top + 'px'
+      })
+    })
+  </script>
+</body>
+
+</html>
