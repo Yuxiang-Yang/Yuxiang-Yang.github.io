@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tabs</title>
+</head>
+
+<body>
+  <main>
+    <div data-tabname="Home">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, autem atque! Aperiam
+      odit consequuntur quaerat odio nihil sed quo perspiciatis pariatur reiciendis id voluptatem totam laborum placeat,
+      possimus unde cum, impedit cumque est dolorem nesciunt. Beatae magnam vitae doloremque quas corporis eos veniam
+      molestias! Quibusdam officiis accusamus laudantium nesciunt placeat incidunt iusto maiores, consequuntur saepe
+      facilis, voluptatem vero hic, dignissimos velit? Aperiam, quos velit. Quidem sit non dicta. Molestiae suscipit
+      adipisci consequatur ipsa alias accusamus vel non ullam deserunt rerum fugiat delectus similique officiis
+      perspiciatis aliquid consectetur, vero doloribus in odio commodi sed praesentium quod eligendi earum? Impedit,
+      voluptas aperiam.</div>
+    <div data-tabname="Link"> aliquam possimus provident, deserunt vel mollitia, itaque similique laboriosam sunt
+      dolores
+      ipsa eligendi nobis? Inventore maiores sed asperiores dolorem numquam esse cupiditate itaque eaque sapiente optio
+      dignissimos fuga cum assumenda deserunt laudantium, aliquam officiis architecto adipisci quae debitis quidem rerum
+      fugit voluptatibus perspiciatis! Sint facilis repudiandae explicabo sapiente hic impedit ipsa, quae error ratione.
+      Vitae modi dolor natus quaerat? Saepe, odio mollitia fugit provident cum facilis labore sapiente veritatis
+      cupiditate.</div>
+    <div data-tabname="About"> Maxime odio perferendis et! Cupiditate consectetur porro iusto nulla enim consequatur
+      ducimus exercitationem cum voluptate? Eum aliquid nemo dolorem expedita in, error et sit iusto itaque cupiditate
+      aut
+      voluptatibus laborum vero? Commodi pariatur, facilis optio harum rerum voluptates. Sit impedit beatae iure
+      inventore
+      voluptates? Voluptatem ipsam repudiandae odio. Molestias porro doloribus cum rem maxime assumenda aliquam magni
+      consequatur deserunt ducimus quisquam, vitae nostrum eligendi ab quod praesentium, error fugiat mollitia. Id vero
+      consequuntur aut, fugiat culpa ipsam modi dolores. Accusamus animi porro aperiam perferendis enim corrupti nemo
+      consectetur veritatis magnam. Ipsa, ut. Incidunt omnis porro totam eos? Natus obcaecati debitis libero odit?</div>
+  </main>
+
+  <script>
+    function asTabs(node) {
+      let children = Array.from(node.children)
+      let buttons = []
+
+      for (let child of children.reverse()) {
+        let button = document.createElement('button')
+        buttons.push(button)
+
+        button.textContent = child.dataset.tabname
+        child.style.display = "none"
+
+        button.addEventListener('click', e => {
+          children.forEach(it => it.style.display = 'none')
+          child.style.display = 'block'
+          buttons.forEach(it => it.style.background = '')
+          button.style.background = 'pink'
+        })
+        node.prepend(button)
+      }
+      node.firstElementChild.click()
+    }
+
+    asTabs(document.querySelector('body main'))
+  </script>
+</body>
+
+</html>
