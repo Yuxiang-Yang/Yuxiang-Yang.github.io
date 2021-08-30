@@ -3,6 +3,26 @@ var yuxiang_yang = (function () {
   function identity(value) {
     return value
   }
+  function bind(f, thisArg, ...fixedArgs) {
+    let placeholder = '_'
+    return function (...args) {
+      let ary = fixedArgs.slice()
+      let j = 0
+      for (let i = 0; i < ary.length; i++) {
+        if (Object.is(ary[i], placeholder)) {
+          if (j < args.length) {
+            ary[i] = args[j++]
+          } else {
+            ary[i] = undefined
+          }
+        }
+      }
+      while (j < args.length) {
+        ary.push(args[j++])
+      }
+      return f.apply(thisArg, ary)
+    }
+  }
   //数组分块
   function chunk(array, size = 1) {
     let result = []
@@ -124,19 +144,75 @@ var yuxiang_yang = (function () {
   function zipWith() {}
   function countBy() {}
   function every() {}
-  function filter() {}
+  function iteratee(func = identity) {
+    if (typeof func === 'function') {
+      return func
+    }
+    if (typeof func === 'string') {
+      return property(func)
+    }
+    if (Array.isArray('string')) {
+      return matchesProperty(...func)
+    }
+    if (typeof iteratee === 'object') {
+      return matches(func)
+    }
+  }
+  function filter(collection, predicate) {
+    predicate = iteratee(predicate)
+
+    let result = []
+    for (let key in collection) {
+      if (predicate(collection[i], i, collection) === true) {
+        result.push(collection[i])
+      }
+    }
+    return result
+  }
   function find() {}
   function findLast() {}
   function flatMap() {}
   function flatMapDeep() {}
   function flatMapDepth() {}
-  function forEach(collection, iteratee = identity) {}
-  function forEachRight() {}
+  //遍历数组或对象
+  function forEach(collection, iteratee = identity) {
+    if (typeof collection === 'array') {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i])
+      }
+    }
+    if (typeof collection === 'object') {
+      for (let prop in collection) {
+        iteratee(prop)
+      }
+    }
+  }
+  //Todo
+  function forEachRight(collection, iteratee = identity) {
+    if (typeof collection === 'array') {
+      for (let i = collection.length - 1; i >= 0; i++) {
+        iteratee(collection[i])
+      }
+    }
+    if (typeof collection === 'object') {
+      for (let prop in collection) {
+        iteratee(prop)
+      }
+    }
+  }
   function groupBy(collection, iteratee = identity) {}
   function includes() {}
   function invokeMap() {}
   function keyBy() {}
-  function map() {}
+  function map(collection, iteratee = identity) {
+    iteratee = iteratee(iteratee)
+
+    let result = []
+    for (let key in collection) {
+      result.push(iteratee(collection[key], collection))
+    }
+    return result
+  }
   function orderBy() {}
   function partition() {}
   function reduce() {}
@@ -181,7 +257,26 @@ var yuxiang_yang = (function () {
   function isInteger() {}
   function isLength() {}
   function isMap() {}
-  function isMatch() {}
+  function isMatch(object, source) {
+    if (object == source) {
+      return true
+    }
+    if (typeof object !== 'object' || typeof source !== 'object') {
+      return false
+    }
+    for (let key in source) {
+      if (source[key] && typeof source[key] !== 'object') {
+        if (object[key] !== source[key]) {
+          return false
+        }
+      } else {
+        if (!isMatch(object[key], source[key])) {
+          return false
+        }
+      }
+    }
+    return true
+  }
   function isMatchWith() {}
   function isNaN() {}
   function isNative() {}
@@ -223,8 +318,17 @@ var yuxiang_yang = (function () {
   function multiply() {}
   function round() {}
   function subtract() {}
-  function sum() {}
-  function sumBy() {}
+  function sum(ary) {
+    return sumBy(ary)
+  }
+  function sumBy(ary, predicate = identity) {
+    predicate = iteratee(predicate)
+    let sum = 0
+    for (let item of ary) {
+      sum += predicate(ary[i])
+    }
+    return sum
+  }
   function clamp() {}
   function inRange() {}
   function random() {}
@@ -239,7 +343,17 @@ var yuxiang_yang = (function () {
   function forOwnRight() {}
   function functions() {}
   function functionsIn() {}
-  function get() {}
+  function get(object, path, defaultVal = undefined) {
+    path = toPath(path)
+    for (var p of path) {
+      if (object == undefined) {
+        return defaultVal
+      } else {
+        object = object[p]
+      }
+    }
+    return object
+  }
   function has() {}
   function hasIn() {}
   function invert() {}
@@ -269,7 +383,31 @@ var yuxiang_yang = (function () {
   function camelCase() {}
   function capitalize() {}
   function endsWith() {}
-  function escape() {}
+  function escape(str) {
+    let result = ''
+    for (let i = 0; i < str.length; i++) {
+      switch (str[i]) {
+        case '&':
+          result += '&amp;'
+          break
+        case '<':
+          result += '&lt;'
+          break
+        case '&':
+          result += '&gt;'
+          break
+        case '"':
+          result += '&quot;'
+          break
+        case "'":
+          result += '&apos;'
+          break
+        default:
+          result += str[i]
+      }
+    }
+    return result
+  }
   function escapeRegExp() {}
   function kebabCase() {}
   function lowerCase() {}
@@ -299,16 +437,39 @@ var yuxiang_yang = (function () {
   function defaultTo() {}
   function flow() {}
   function identity() {}
-  function matches() {}
+  function matches(src) {
+    return function (obj) {
+      return isMatch(obj, src)
+    }
+  }
+  function matchesProperty(path, val) {
+    return function (obj) {
+      return isEqual(get(obj, path), val)
+    }
+  }
+
   function method() {}
   function methodOf() {}
   function nthArg() {}
-  function property() {}
+  //传入什么属性名，它返回的函数就用来获取对象的什么属性名
+  function property(prop) {
+    return get.bind(null, '_', prop)
+  }
   function propertyOf() {}
   function range() {}
   function rangeRight() {}
   function times() {}
-  function toPath() {}
+  function toPath(val) {
+    if (Array.isArray(val)) {
+      return val
+    } else {
+      return val
+        .split('][')
+        .reduce((ary, it) => ary.concat(it.split('].')), [])
+        .reduce((ary, it) => ary.concat(it.split('[')), [])
+        .reduce((ary, it) => ary.concat(it.split('.')), [])
+    }
+  }
   function uniqueId() {}
   function parseJson() {}
   function stringifyJson() {}
