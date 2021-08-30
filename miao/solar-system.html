@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar System</title>
+  <style>
+    main {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      transform: translate(-50%, -50%);
+    }
+
+    div {
+      position: fixed;
+    }
+
+    .sun {
+      width: 60px;
+      height: 60px;
+      background-color: red;
+      /* border-radius: 50%; */
+    }
+
+    .earth {
+      width: 40px;
+      height: 40px;
+      background-color: skyblue;
+      border-radius: 50%;
+    }
+
+    .moon {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: grey;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="sun"></div>
+    <div class="earth">
+      <div class="moon"></div>
+    </div>
+  </main>
+  <script>
+    let sun = document.querySelector('.sun')
+    let earth = document.querySelector('.earth')
+    let moon = document.querySelector('.moon')
+
+    requestAnimationFrame(function rotation(time) {
+      let angle = time * 0.003
+
+      sun.style.transform = `rotate(${angle}deg)`
+
+      earth.style.left = Math.cos(angle * 0.2) * 250 + 'px'
+      earth.style.top = Math.sin(angle * 0.2) * 250 + 'px'
+
+      moon.style.left = Math.cos(angle * 0.3) * 80 + 'px'
+      moon.style.top = Math.sin(angle * 0.3) * 80 + 'px'
+      // angle += Math.PI * 2 / 3
+      requestAnimationFrame(rotation)
+    })
+
+  </script>
+</body>
+
+</html>
